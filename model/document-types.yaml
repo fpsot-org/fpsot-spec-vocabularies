@@ -22,7 +22,9 @@ enums:
     description: >-
       Kinds of documents that a public body issues. Generated from release
       1.1.0 of the scheme https://data.example.org/vocabularies/document-types.
-    enum_uri: https://data.example.org/vocabularies/document-types
+    enum_uri: ex:DocumentType
+    see_also:
+      - https://data.example.org/vocabularies/document-types
     permissible_values:
       permit:
         meaning: doctype:permit

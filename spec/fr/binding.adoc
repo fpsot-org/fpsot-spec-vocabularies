@@ -7,15 +7,17 @@ Ces règles emploient les link:https://linkml.io/linkml/schemas/enums.html[énum
 == Énumérations
 
 [[VOC-060]]
-*VOC-060.* Un modèle LinkML dont un champ contient des codes d’un schéma DOIT définir une énumération pour ce schéma.
+*VOC-060.* Un modèle LinkML DOIT définir une énumération pour chaque champ qui contient des codes d’un schéma, sauf selon VOC-065.
 Le domaine de valeurs du champ DOIT être cette énumération.
 La spécification sur les types de données fixe déjà cette forme pour les valeurs de code, pour DAT-072.
-Un validateur refuse alors tout code que le schéma ne contient pas.
+Quand un système écrit de nouvelles données, un validateur refuse alors tout code que le schéma ne contient pas.
+Les données que le système lit d’autres sources suivent VOC-037.
 
 [[VOC-061]]
 *VOC-061.* Le nom de chaque valeur permise DOIT être le code de son concept, selon VOC-005.
-Son `meaning` DOIT être l’{abbr-uri-first} du concept, et l’`enum_uri` de l’énumération DOIT être l’{abbr-uri} du schéma.
-Le modèle DOIT déclarer un préfixe pour le schéma, pour qu’un sens puisse être court, comme `doctype:building-permit`.
+Son `meaning` DOIT être l’{abbr-uri-first} du concept, avec un préfixe que le modèle DOIT déclarer, comme `doctype:building-permit`.
+L’énumération appartient au modèle, donc son `enum_uri` DOIT rester dans l’espace de noms du modèle.
+Son `see_also` DOIT donner l’{abbr-uri} du schéma.
 Un code d’un autre émetteur garde sa forme comme nom, comme `QC`, selon DAT-066.
 Chaque valeur mène alors à ses libellés, à sa définition et à ses correspondances dans le schéma.
 
@@ -36,7 +38,9 @@ Le numéro de version indique au lectorat quelle version du schéma le modèle v
 == Données conservées
 
 [[VOC-064]]
-*VOC-064.* Les données DOIVENT conserver le code d’un concept, jamais son {abbr-uri} ni son libellé.
+*VOC-064.* Un dossier {abbr-json-first} ou tabulaire DOIT conserver le code d’un concept, jamais son {abbr-uri} ni son libellé.
+Ce sont les dossiers que couvre la spécification sur les types de données.
+Les données {abbr-rdf-first} PEUVENT plutôt désigner l’{abbr-uri} du concept, puisque le {abbr-rdf} relie les ressources par leur adresse.
 Un écran DOIT montrer le libellé tiré du schéma, selon DAT-073.
 Le code est court, stable et le même dans toutes les langues.
 Les libellés changent selon la version et la langue, et une {abbr-uri} complète répète le schéma dans chaque dossier.

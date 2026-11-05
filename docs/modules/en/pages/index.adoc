@@ -37,6 +37,8 @@ State each broader link and its narrower link, and mark each concept without a p
 <https://data.example.org/vocabularies/document-types>
     a skos:ConceptScheme ;
     skos:prefLabel "Document types"@en , "Types de documents"@fr ;
+    skos:definition "Kinds of documents that a public body issues to a person or a business."@en ,
+        "Genres de documents qu’un organisme public délivre à une personne ou à une entreprise."@fr ;
     skos:scopeNote "Open list: a minor release can add concepts."@en ,
         "Liste ouverte : une version mineure peut ajouter des concepts."@fr ;
     dct:publisher <https://data.example.org/> ;
@@ -64,6 +66,15 @@ doctype:building-permit
     skos:definition "A permit to build, enlarge or demolish a building."@en ,
         "Permis qui permet de construire, d’agrandir ou de démolir un bâtiment."@fr ;
     skos:broader doctype:permit .
+
+doctype:decision
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "decision" ;
+    skos:prefLabel "Decision"@en , "Décision"@fr ;
+    skos:definition "A document that gives the answer of a public body to a request, with its reasons."@en ,
+        "Document qui donne la réponse d’un organisme public à une demande, avec ses motifs."@fr .
 ----
 
 The alternative label "Permis de bâtir" lets search find the concept by a common Québec wording.
@@ -71,14 +82,14 @@ The alternative label "Permis de bâtir" lets search find the concept by a commo
 == Map to an outside scheme
 
 Link a concept to the published {abbr-uri} of an outside concept, as VOC-042 asks.
-The decision of a public body is close to a decision of the European Union, but not the same.
-Use a close match.
+The EU resource type Decision covers the legal acts of the Union, not the answers of a body to people.
+The two concepts relate but can never replace each other, so use a related match.
 Name the outside scheme on your scheme, and note the release that you checked, as VOC-044 asks.
 
 [source,turtle]
 ----
 doctype:decision
-    skos:closeMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> .
+    skos:relatedMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> .
 
 <https://data.example.org/vocabularies/document-types>
     dct:references <http://publications.europa.eu/resource/authority/resource-type> ;
@@ -113,18 +124,22 @@ Records that hold the code still show the label "Authorization".
 
 Generate an enumeration from the release, as VOC-060 to VOC-063 ask.
 Each permissible value has the code as its name and the concept {abbr-uri} as its `meaning`.
+The `enum_uri` stays in the namespace of the model, and `see_also` points to the scheme, as VOC-061 asks.
 The deprecated value stays, with its reason and its replacement.
 
 [source,yaml]
 ----
 prefixes:
   doctype: https://data.example.org/vocabularies/document-types/concepts/
+  ex: https://data.example.org/model/document-types/
 enums:
   DocumentType:
     description: >-
       Kinds of documents that a public body issues. Generated from release
       1.1.0 of the scheme https://data.example.org/vocabularies/document-types.
-    enum_uri: https://data.example.org/vocabularies/document-types
+    enum_uri: ex:DocumentType
+    see_also:
+      - https://data.example.org/vocabularies/document-types
     permissible_values:
       permit:
         meaning: doctype:permit

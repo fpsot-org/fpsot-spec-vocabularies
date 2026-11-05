@@ -59,12 +59,12 @@ Une adresse avec version désigne des fichiers, et non des concepts, donc chaque
 Un système peut alors vérifier ses données selon la version exacte qu’il a employée.
 
 [[VOC-037]]
-*VOC-037.* La description d’un schéma DOIT dire si une version mineure peut ajouter des concepts.
-L’exigence NAM-081 fixe la même règle pour les listes de codes.
-Un système qui lit un schéma ouvert NE DOIT PAS échouer devant un code qu’il ne connaît pas.
-Il DEVRAIT lire la version courante du schéma pour trouver le libellé.
-Une liste fermée, comme oui, non et inconnu, peut promettre de ne jamais s’allonger.
-La plupart des listes s’allongent, et les clients qui s’y attendent continuent de fonctionner.
+*VOC-037.* La description d’un schéma DOIT dire si une version mineure peut ajouter des concepts, selon NAM-081.
+La vérification selon une énumération s’applique quand un système écrit de nouvelles données.
+Un système DOIT accepter et garder les données lues d’autres systèmes, même avec des codes inconnus de son énumération.
+L’autre choix est de produire de nouveau l’énumération à partir de la version courante, avant de lire les données.
+Un système DEVRAIT lire la version courante du schéma pour trouver le libellé d’un nouveau code.
+La plupart des listes s’allongent, et seule une liste fermée, comme oui, non et inconnu, peut promettre le contraire.
 
 == Références
 

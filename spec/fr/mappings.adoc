@@ -28,12 +28,12 @@ Les correspondances proches ne le font pas, donc une paire douteuse est une corr
 Un projet NE DOIT PAS inventer une {abbr-uri} dans le domaine d’un autre organisme.
 Certaines listes de codes ne publient pas d’{abbr-uri}, comme l’link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166].
 Pour elles, un projet DEVRAIT viser un schéma public qui porte ces codes comme notations.
-Par exemple, la table des pays des EU Vocabularies porte les codes ISO 3166-1 de chaque pays.
+Par exemple, la table des pays des link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies] porte les codes ISO 3166-1 de chaque pays.
 Une adresse inventée ne mènerait à rien, ou plus tard à autre chose.
 
 [[VOC-043]]
 *VOC-043.* Un schéma NE DOIT PAS relier des concepts par `owl:sameAs`.
-Pour une même paire, il NE DOIT PAS indiquer une correspondance exacte avec une correspondance plus large ou associative.
+Pour une paire, il NE DOIT PAS joindre une correspondance exacte à une correspondance plus large, plus étroite ou associative.
 Les propriétés de correspondance NE DOIVENT PAS joindre deux concepts d’un même schéma.
 Ces concepts emploient plutôt les liens de VOC-021 et de VOC-023.
 `owl:sameAs` fait des deux concepts une seule ressource, donc chacun prendrait les libellés et les liens de l’autre.

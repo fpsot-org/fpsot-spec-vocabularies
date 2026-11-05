@@ -237,16 +237,13 @@
       "skos:changeNote": [
         {
           "@language": "en",
-          "@value": "2026-11-05, 1.1.0: Close match to the EU resource type Decision added."
+          "@value": "2026-11-05, 1.1.0: Related match to the EU resource type Decision added."
         },
         {
           "@language": "fr",
-          "@value": "2026-11-05, 1.1.0 : Correspondance proche avec le type de ressource Décision de l’UE ajoutée."
+          "@value": "2026-11-05, 1.1.0 : Correspondance associative avec le type de ressource Décision de l’UE ajoutée."
         }
       ],
-      "skos:closeMatch": {
-        "@id": "http://publications.europa.eu/resource/authority/resource-type/DEC"
-      },
       "skos:definition": [
         {
           "@language": "en",
@@ -271,6 +268,9 @@
           "@value": "Décision"
         }
       ],
+      "skos:relatedMatch": {
+        "@id": "http://publications.europa.eu/resource/authority/resource-type/DEC"
+      },
       "skos:topConceptOf": {
         "@id": "https://data.example.org/vocabularies/document-types"
       }

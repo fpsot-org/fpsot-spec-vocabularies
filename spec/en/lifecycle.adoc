@@ -59,12 +59,12 @@ A versioned address names files, not concepts, so each concept keeps its single 
 A system can then check its data against the exact release it used.
 
 [[VOC-037]]
-*VOC-037.* The description of a scheme MUST say whether a minor release can add concepts.
-Rule NAM-081 sets the same for code lists.
-A system that reads an open scheme MUST NOT fail on a code it does not know.
-It SHOULD read the current release of the scheme to find the label.
-A closed list, such as yes, no and unknown, can promise that it never grows.
-Most lists grow, and clients that expect growth keep working.
+*VOC-037.* The description of a scheme MUST say whether a minor release can add concepts, under NAM-081.
+A check against an enumeration applies when a system writes new data.
+A system MUST accept and keep data read from other systems, even with codes that its enumeration does not know.
+The other choice is to generate the enumeration again from the current release, before reading the data.
+A system SHOULD read the current release of the scheme to find the label of a new code.
+Most lists grow, and only a closed list, such as yes, no and unknown, can promise otherwise.
 
 == References
 

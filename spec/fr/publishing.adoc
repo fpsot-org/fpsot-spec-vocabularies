@@ -11,12 +11,12 @@ Les programmes lisent les fichiers {abbr-rdf-first}, et les personnes lisent un 
 Les deux fichiers DOIVENT contenir les mêmes énoncés.
 Les fichiers DOIVENT employer l’{abbr-utf-8-first}, selon DAT-001.
 Leur nom DEVRAIT être le nom du schéma avec l’extension `.ttl` ou `.jsonld`, comme `document-types.ttl`.
-Le Turtle se lit et se révise facilement dans une demande de tirage.
+Le Turtle se lit et se révise facilement dans une demande de fusion.
 Avec le {abbr-json-ld-first}, les personnes qui développent pour le Web lisent les mêmes données avec leurs outils {abbr-json-first}.
 
 [[VOC-051]]
 *VOC-051.* Le fichier Turtle DEVRAIT être la source du schéma, gardée sous gestion de versions.
-Un outil DOIT produire les autres fichiers à partir de lui, et personne ne les modifie à la main.
+Un outil DOIT produire les autres fichiers à partir de la source, et personne ne les modifie à la main.
 Une seule source empêche les fichiers de diverger.
 Chaque changement à un concept paraît alors dans l’historique d’un seul fichier.
 
@@ -24,7 +24,7 @@ Chaque changement à un concept paraît alors dans l’historique d’un seul fi
 *VOC-052.* Un éditeur DOIT aussi publier chaque version sous forme de fichier {abbr-csv-first} pour les personnes.
 Selon le link:https://www.rfc-editor.org/info/rfc4180[RFC 4180], il DOIT avoir une ligne d’en-tête, puis une ligne par concept, y compris les concepts déconseillés.
 Ses colonnes DOIVENT être `uri`, `code`, `labelEn`, `labelFr`, `definitionEn`, `definitionFr`, `broader`, `deprecated` et `replacedBy`, dans cet ordre.
-Une colonne qui contient deux valeurs {abbr-uri-first} ou plus DOIT les séparer par une espace.
+Une colonne qui contient deux {abbr-uri-first} ou plus DOIT les séparer par une espace.
 La colonne `deprecated` DOIT contenir `true` ou `false`.
 La plupart des personnes ouvrent un vocabulaire dans un tableur, et des colonnes fixes permettent de comparer deux schémas.
 

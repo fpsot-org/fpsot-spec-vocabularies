@@ -16,7 +16,7 @@ With {abbr-json-ld-first}, web developers can read the same data with their usua
 
 [[VOC-051]]
 *VOC-051.* The Turtle file SHOULD be the source of the scheme, kept under version control.
-A tool MUST generate the other files from it, and nobody edits them by hand.
+A tool MUST generate the other files from the source, and nobody edits them by hand.
 One source keeps the files from drifting apart.
 Each change to a concept then shows in the history of one file.
 

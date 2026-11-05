@@ -22,7 +22,7 @@ rows:
     source: {title: "Lignes directrices sur la diffusion de données ouvertes, Données Québec", url: "https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/", archive: "https://web.archive.org/web/20261024232216/https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/"}
     last_checked: "2026-11-05"
   - id: VOC-052
-    text: {en: "CSV is strongly recommended for tables, in UTF-8. The first line holds the column headers, without accents or spaces, and commas separate the fields.", fr: "Le CSV est fortement recommandé pour les tableaux, en UTF-8. La première ligne contient les en-têtes de colonnes, sans accents ni espaces, et des virgules séparent les champs."}
-    status: same
+    text: {en: "CSV is only strongly recommended for tables, and no columns are set. Once CSV is chosen, it is in UTF-8, the first line holds the column headers without accents or spaces, and commas separate the fields.", fr: "Le CSV est seulement fortement recommandé pour les tableaux, et aucune colonne n’est fixée. Une fois le CSV choisi, il est en UTF-8, la première ligne contient les en-têtes de colonnes sans accents ni espaces, et des virgules séparent les champs."}
+    status: looser
     source: {title: "Lignes directrices sur la diffusion de données ouvertes, Données Québec", url: "https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/", archive: "https://web.archive.org/web/20261024232216/https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/"}
     last_checked: "2026-11-05"

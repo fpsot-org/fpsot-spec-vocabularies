@@ -28,7 +28,7 @@ rows:
     requirement: {en: "A code from another issuer keeps the exact form of that issuer.", fr: "Un code d’un autre émetteur garde la forme exacte de cet émetteur."}
     international: {en: "The EU country table bases its codes on ISO 3166-1 where it can, and keeps the ISO codes as notations.", fr: "La table des pays de l’UE fonde ses codes sur l’ISO 3166-1 quand c’est possible, et garde les codes ISO comme notations."}
     international_source: {title: "EU Vocabularies, Authority tables", version: "Release 20260923-0", date: "2026-09-23", url: "https://op.europa.eu/en/web/eu-vocabularies/authority-tables", archive: "https://web.archive.org/web/20261015110940/https://op.europa.eu/en/web/eu-vocabularies/authority-tables"}
-    fpsot: {en: "Codes that FPSOT or the publisher defines are kebab-case English. Codes of other issuers keep their form, such as QC.", fr: "Les codes que la FPSOT ou l’éditeur définit sont en anglais et en kebab-case. Les codes d’autres émetteurs gardent leur forme, comme QC."}
+    fpsot: {en: "Codes that FPSOT or the publisher defines are kebab-case English. Codes of other issuers keep their form, such as QC. When an issuer may reuse codes, the publisher defines the plain code, and the issuer code becomes a typed notation.", fr: "Les codes que la FPSOT ou l’éditeur définit sont en anglais et en kebab-case. Les codes d’autres émetteurs gardent leur forme, comme QC. Quand un émetteur peut réutiliser des codes, l’éditeur définit le code simple, et le code de l’émetteur devient une notation typée."}
   - id: VOC-007
     topic: codes
     requirement: {en: "A code never changes and is never given to another concept.", fr: "Un code ne change jamais et n’est jamais donné à un autre concept."}
@@ -43,7 +43,7 @@ rows:
     fpsot: {en: "Exactly one preferred label tagged en and one tagged fr, on each scheme, concept and collection.", fr: "Exactement un libellé préférentiel étiqueté en et un étiqueté fr, sur chaque schéma, concept et collection."}
   - id: VOC-013
     topic: labels
-    requirement: {en: "One text is never in two label kinds of one concept.", fr: "Un même texte ne figure jamais dans deux genres de libellés d’un même concept."}
+    requirement: {en: "One text is never in two label kinds of one concept.", fr: "Un même texte ne figure jamais dans deux types de libellés d’un même concept."}
     international: {en: "Preferred, alternative and hidden labels are pairwise disjoint.", fr: "Les libellés préférentiels, alternatifs et cachés sont disjoints deux à deux."}
     international_source: {title: "SKOS Simple Knowledge Organization System Reference", version: "W3C Recommendation", date: "2009-08-18", url: "https://www.w3.org/TR/skos-reference/", archive: "https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/"}
     fpsot: {en: "The same condition, for each concept and each language.", fr: "La même condition, pour chaque concept et chaque langue."}
@@ -118,4 +118,4 @@ rows:
     requirement: {en: "Each permissible value of an enumeration points to its concept URI.", fr: "Chaque valeur permise d’une énumération pointe vers l’URI de son concept."}
     international: {en: "In LinkML, the meaning of a permissible value is a URI or a short form that gives its sense.", fr: "En LinkML, le sens d’une valeur permise est une URI ou une forme courte qui donne sa signification."}
     international_source: {title: "LinkML, Enums", version: "1.12.1", url: "https://linkml.io/linkml/schemas/enums.html", archive: "https://web.archive.org/web/20261001144647/https://linkml.io/linkml/schemas/enums.html"}
-    fpsot: {en: "The name of the value is the code, its meaning is the concept URI, and enum_uri is the scheme URI.", fr: "Le nom de la valeur est le code, son sens est l’URI du concept, et enum_uri est l’URI du schéma."}
+    fpsot: {en: "The name of the value is the code, and its meaning is the concept URI. The enum_uri stays in the namespace of the model, and see_also gives the scheme URI.", fr: "Le nom de la valeur est le code, et son sens est l’URI du concept. L’enum_uri reste dans l’espace de noms du modèle, et see_also donne l’URI du schéma."}

@@ -28,12 +28,12 @@ Close matches do not, so a doubtful pair is a close match.
 A project MUST NOT make up a {abbr-uri} in the domain of another body.
 Some code lists publish no {abbr-uri}, such as link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166].
 For them, a project SHOULD map to a public scheme that carries those codes as notations.
-The country table of the EU Vocabularies carries the ISO 3166-1 codes of each country, for example.
+The country table of the link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies] carries the ISO 3166-1 codes of each country, for example.
 A made-up address would point to nothing, or later to something else.
 
 [[VOC-043]]
 *VOC-043.* A scheme MUST NOT link concepts with `owl:sameAs`.
-For one pair of concepts, it MUST NOT state an exact match together with a broad or related match.
+For one pair of concepts, it MUST NOT state an exact match together with a broad, narrow or related match.
 Mapping properties MUST NOT join two concepts of the same scheme, which use the links of VOC-021 and VOC-023.
 `owl:sameAs` makes two concepts one resource, so each would take on the labels and links of the other.
 The second condition is one of the integrity conditions of the {abbr-skos-first} model.

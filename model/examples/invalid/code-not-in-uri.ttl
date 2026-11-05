@@ -65,10 +65,10 @@ doctype:decision
     skos:prefLabel "Decision"@en , "Décision"@fr ;
     skos:definition "A document that gives the answer of a public body to a request, with its reasons."@en ,
         "Document qui donne la réponse d’un organisme public à une demande, avec ses motifs."@fr ;
-    skos:closeMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> ;
+    skos:relatedMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> ;
     dct:modified "2026-11-05"^^xsd:date ;
-    skos:changeNote "2026-11-05, 1.1.0: Close match to the EU resource type Decision added."@en ,
-        "2026-11-05, 1.1.0 : Correspondance proche avec le type de ressource Décision de l’UE ajoutée."@fr .
+    skos:changeNote "2026-11-05, 1.1.0: Related match to the EU resource type Decision added."@en ,
+        "2026-11-05, 1.1.0 : Correspondance associative avec le type de ressource Décision de l’UE ajoutée."@fr .
 
 doctype:doc-5
     a skos:Concept ;

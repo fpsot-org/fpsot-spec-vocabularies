@@ -37,6 +37,8 @@ Indiquez chaque lien générique et son lien spécifique, et marquez chaque conc
 <https://data.example.org/vocabularies/document-types>
     a skos:ConceptScheme ;
     skos:prefLabel "Document types"@en , "Types de documents"@fr ;
+    skos:definition "Kinds of documents that a public body issues to a person or a business."@en ,
+        "Genres de documents qu’un organisme public délivre à une personne ou à une entreprise."@fr ;
     skos:scopeNote "Open list: a minor release can add concepts."@en ,
         "Liste ouverte : une version mineure peut ajouter des concepts."@fr ;
     dct:publisher <https://data.example.org/> ;
@@ -64,6 +66,15 @@ doctype:building-permit
     skos:definition "A permit to build, enlarge or demolish a building."@en ,
         "Permis qui permet de construire, d’agrandir ou de démolir un bâtiment."@fr ;
     skos:broader doctype:permit .
+
+doctype:decision
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "decision" ;
+    skos:prefLabel "Decision"@en , "Décision"@fr ;
+    skos:definition "A document that gives the answer of a public body to a request, with its reasons."@en ,
+        "Document qui donne la réponse d’un organisme public à une demande, avec ses motifs."@fr .
 ----
 
 Le libellé alternatif « Permis de bâtir » permet à la recherche de trouver le concept par une formulation courante au Québec.
@@ -71,14 +82,14 @@ Le libellé alternatif « Permis de bâtir » permet à la recherche de trouver 
 == Établir une correspondance avec un schéma externe
 
 Reliez un concept à l’{abbr-uri} publiée d’un concept externe, comme le demande VOC-042.
-La décision d’un organisme public ressemble à une décision de l’Union européenne, sans être la même.
-Employez une correspondance proche.
+Le type de ressource Décision de l’UE couvre les actes juridiques de l’Union, pas les réponses d’un organisme aux personnes.
+Les deux concepts sont reliés sans jamais pouvoir se remplacer, donc employez une correspondance associative.
 Nommez le schéma externe sur votre schéma, et notez la version que vous avez vérifiée, comme le demande VOC-044.
 
 [source,turtle]
 ----
 doctype:decision
-    skos:closeMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> .
+    skos:relatedMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> .
 
 <https://data.example.org/vocabularies/document-types>
     dct:references <http://publications.europa.eu/resource/authority/resource-type> ;
@@ -113,18 +124,22 @@ Les dossiers qui contiennent ce code montrent encore le libellé « Autorisation
 
 Produisez une énumération à partir de la version, comme le demandent VOC-060 à VOC-063.
 Chaque valeur permise a le code comme nom et l’{abbr-uri} du concept comme `meaning`.
+L’`enum_uri` reste dans l’espace de noms du modèle, et `see_also` pointe vers le schéma, comme le demande VOC-061.
 La valeur déconseillée reste, avec sa raison et son remplaçant.
 
 [source,yaml]
 ----
 prefixes:
   doctype: https://data.example.org/vocabularies/document-types/concepts/
+  ex: https://data.example.org/model/document-types/
 enums:
   DocumentType:
     description: >-
       Kinds of documents that a public body issues. Generated from release
       1.1.0 of the scheme https://data.example.org/vocabularies/document-types.
-    enum_uri: https://data.example.org/vocabularies/document-types
+    enum_uri: ex:DocumentType
+    see_also:
+      - https://data.example.org/vocabularies/document-types
     permissible_values:
       permit:
         meaning: doctype:permit

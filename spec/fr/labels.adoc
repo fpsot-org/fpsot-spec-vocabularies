@@ -14,15 +14,16 @@ La présente spécification exige aussi les deux langues, comme NAM-061 et DAT-0
 Une personne qui lit l’une ou l’autre langue voit alors un vrai libellé, jamais un code.
 
 [[VOC-011]]
-*VOC-011.* Un libellé ou une définition DOIT porter une étiquette de langue qui suit LOC-001 et LOC-002.
-Les étiquettes DOIVENT être `en` et `fr`.
-Un libellé avec une étiquette régionale, comme `fr-CA`, PEUT s’y ajouter.
-Il existe seulement quand la formulation de cette région diffère.
+*VOC-011.* Chaque libellé, définition et note DOIT porter une étiquette de langue qui suit LOC-001 et LOC-002.
+Chacun DOIT exister avec l’étiquette `en` et avec l’étiquette `fr`.
+Un schéma PEUT ajouter des libellés en d’autres langues, et des libellés avec une étiquette régionale comme `fr-CA`.
+Un libellé régional existe seulement quand la formulation de cette région diffère.
 Un programme cherche un libellé par la chaîne de repli de LOC-006.
 Les étiquettes de base servent alors au lectorat de chaque région, et les données emploient les clés de DAT-004.
 
 [[VOC-012]]
-*VOC-012.* Deux concepts d’un même schéma NE DOIVENT PAS avoir le même libellé préférentiel dans la même langue.
+*VOC-012.* Deux concepts non déconseillés d’un même schéma NE DOIVENT PAS avoir le même libellé préférentiel dans une langue.
+Un concept déconseillé qui garde un tel libellé DEVRAIT le préciser selon VOC-016, comme `Permis de construction (avant 2027)`.
 Un libellé alternatif NE DEVRAIT PAS être identique au libellé préférentiel d’un autre concept du schéma.
 Le modèle {abbr-skos-first} n’interdit pas ces conflits.
 Pourtant, une personne qui choisit dans une liste ne peut pas distinguer les deux concepts.
@@ -31,7 +32,7 @@ Pourtant, une personne qui choisit dans une liste ne peut pas distinguer les deu
 *VOC-013.* Un libellé alternatif, `skos:altLabel`, PEUT contenir un synonyme, une abréviation ou un ancien libellé.
 Un libellé caché, `skos:hiddenLabel`, PEUT contenir une faute d’orthographe courante.
 La recherche l’emploie, mais les écrans ne le montrent jamais.
-Un texte NE DOIT PAS figurer dans deux de ces trois genres de libellés pour un concept et une langue.
+Un texte NE DOIT PAS figurer dans deux de ces trois types de libellés pour un concept et une langue.
 La recherche trouve alors un concept avec les mots que les personnes tapent.
 La règle contre le chevauchement est une des conditions d’intégrité de {abbr-skos}.
 

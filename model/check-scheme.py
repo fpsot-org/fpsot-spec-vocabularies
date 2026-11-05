@@ -83,6 +83,8 @@ def check(g):
             pref = texts(g, c, SKOS.prefLabel, lang)
             if len(pref) != 1:
                 out.append(f"VOC-010: {cs} needs exactly one prefLabel@{lang}")
+            elif deprecated(g, c):
+                pass  # VOC-012 applies among current concepts only.
             elif pref[0] in labels[lang]:
                 out.append(f"VOC-012: {cs} and {labels[lang][pref[0]]} share the label {pref[0]!r}@{lang}")
             else:
@@ -121,8 +123,9 @@ def check(g):
         if list(g.objects(c, OWL.sameAs)):
             out.append(f"VOC-043: {cs} uses owl:sameAs")
         exact = set(g.objects(c, SKOS.exactMatch))
-        if exact & (set(g.objects(c, SKOS.broadMatch)) | set(g.objects(c, SKOS.relatedMatch))):
-            out.append(f"VOC-043: {cs} has an exact match that is also a broad or related match")
+        others = set(g.objects(c, SKOS.broadMatch)) | set(g.objects(c, SKOS.narrowMatch)) | set(g.objects(c, SKOS.relatedMatch))
+        if exact & others:
+            out.append(f"VOC-043: {cs} has an exact match that is also a broad, narrow or related match")
         for p in (SKOS.exactMatch, SKOS.closeMatch, SKOS.broadMatch, SKOS.narrowMatch, SKOS.relatedMatch):
             for m in g.objects(c, p):
                 if (m, SKOS.inScheme, scheme) in g:
@@ -160,15 +163,24 @@ def check_enum(g, model_path, enum_name):
     prefixes = model.get("prefixes", {})
     enum = model["enums"][enum_name]
     scheme = next(g.subjects(RDF.type, SKOS.ConceptScheme))
-    if enum.get("enum_uri") != str(scheme):
-        out.append(f"VOC-061: enum_uri {enum.get('enum_uri')} is not the scheme URI {scheme}")
-    version = str(g.value(scheme, OWL.versionInfo))
-    if f"release {version}" not in enum.get("description", ""):
-        out.append(f"VOC-063: enum description does not name release {version}")
 
     def expand(curie):
         p, _, local = curie.partition(":")
         return prefixes[p] + local if p in prefixes else curie
+
+    # VOC-061: enum_uri stays in the model's own namespace; see_also gives the scheme URI.
+    enum_uri = expand(enum.get("enum_uri") or "")
+    own = [ns for ns in (model.get("id"), prefixes.get(model.get("default_prefix"))) if ns]
+    if enum_uri == str(scheme) or not any(enum_uri.startswith(ns) for ns in own):
+        out.append(f"VOC-061: enum_uri {enum_uri or None} is not in the namespace of the model")
+    see_also = enum.get("see_also") or []
+    if isinstance(see_also, str):
+        see_also = [see_also]
+    if str(scheme) not in [expand(s) for s in see_also]:
+        out.append(f"VOC-061: see_also of the enum does not give the scheme URI {scheme}")
+    version = str(g.value(scheme, OWL.versionInfo))
+    if f"release {version}" not in enum.get("description", ""):
+        out.append(f"VOC-063: enum description does not name release {version}")
 
     pvs = enum.get("permissible_values", {})
     concepts = {str(plain_notations(g, c)[0]): c for c in g.subjects(RDF.type, SKOS.Concept)}

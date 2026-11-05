@@ -14,15 +14,16 @@ This specification also requires both languages, as NAM-061 and DAT-005 do for c
 A reader in either language then sees a real label, never a code.
 
 [[VOC-011]]
-*VOC-011.* A label or a definition MUST carry a language tag that follows LOC-001 and LOC-002.
-The tags MUST be `en` and `fr`.
-A label with a regional tag, such as `fr-CA`, MAY exist next to them.
-It exists only when the wording of that region differs.
+*VOC-011.* Each label, definition and note MUST carry a language tag that follows LOC-001 and LOC-002.
+Each one MUST exist with the tag `en` and with the tag `fr`.
+A scheme MAY add labels in other languages, and labels with a regional tag such as `fr-CA`.
+A regional label exists only when the wording of that region differs.
 A program looks up a label through the fallback chain of LOC-006.
 The base tags then serve every regional reader, and data uses the same keys as DAT-004.
 
 [[VOC-012]]
-*VOC-012.* Two concepts of one scheme MUST NOT have the same preferred label in the same language.
+*VOC-012.* Two concepts of one scheme that are not deprecated MUST NOT have the same preferred label in one language.
+A deprecated concept that keeps such a label SHOULD qualify it under VOC-016, as in `Building permit (before 2027)`.
 An alternative label SHOULD NOT match the preferred label of another concept in that scheme.
 The {abbr-skos-first} model does not forbid such clashes, but a person picking from a list cannot tell the two apart.
 

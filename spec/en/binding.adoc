@@ -7,15 +7,17 @@ These rules use link:https://linkml.io/linkml/schemas/enums.html[LinkML enumerat
 == Enumerations
 
 [[VOC-060]]
-*VOC-060.* A LinkML model with a field that holds codes of a scheme MUST define an enumeration for it.
+*VOC-060.* A LinkML model MUST define an enumeration for each field that holds codes of a scheme, except under VOC-065.
 The range of the field MUST be that enumeration.
 The data types specification already sets this form for code values, in its table for DAT-072.
-A validator then rejects any code that the scheme does not hold.
+When a system writes new data, a validator then rejects any code that the scheme does not hold.
+Data that the system reads from others follows VOC-037.
 
 [[VOC-061]]
 *VOC-061.* The name of each permissible value MUST be the code of its concept, under VOC-005.
-Its `meaning` MUST be the concept {abbr-uri-first}, and the `enum_uri` of the enumeration MUST be the scheme {abbr-uri}.
-The model MUST declare a prefix for the scheme, so that a meaning can be short, such as `doctype:building-permit`.
+Its `meaning` MUST be the concept {abbr-uri-first}, with a prefix that the model MUST declare, such as `doctype:building-permit`.
+The enumeration belongs to the model, so its `enum_uri` MUST stay in the namespace of the model.
+Its `see_also` MUST give the scheme {abbr-uri}.
 A code from another issuer keeps its form as the name, such as `QC`, under DAT-066.
 Each value then leads to its labels, definition and mappings in the scheme.
 
@@ -36,7 +38,9 @@ The release number tells a reader which version of the scheme the model checks.
 == Stored data
 
 [[VOC-064]]
-*VOC-064.* Data MUST store the code of a concept, never its {abbr-uri} or its label.
+*VOC-064.* A {abbr-json-first} or tabular record MUST store the code of a concept, never its {abbr-uri} or its label.
+These are the records that the data types specification covers.
+Data in {abbr-rdf-first} MAY reference the concept {abbr-uri} instead, since {abbr-rdf} links resources by address.
 A screen MUST show the label from the scheme, under DAT-073.
 The code is short, stable and the same in every language.
 Labels change and differ by language, and a full {abbr-uri} only repeats the scheme in each record.
