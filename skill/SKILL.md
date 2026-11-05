@@ -22,7 +22,7 @@ The spec text in `spec/` wins on any difference. Each line cites its requirement
 ## Labels and definitions
 
 - Each scheme, concept and collection must have exactly one `skos:prefLabel@en` and one `@fr` (VOC-010).
-- Each label, definition and note must carry a tag per LOC-001 and LOC-002, and must exist in `en` and `fr`. Other languages and regional tags such as `@fr-CA` may be added; a regional label exists only when the wording differs (VOC-011).
+- Each label, definition and note must carry a tag per LOC-001 and LOC-002, and each preferred label, definition and note must exist in `en` and `fr`; alternative and hidden labels may be in one language only. Other languages and regional tags such as `@fr-CA` may be added; a regional label exists only when the wording differs (VOC-011).
 - Two concepts of one scheme that are not deprecated must not share a preferred label in one language. A deprecated concept that keeps such a label should qualify it, such as "Building permit (before 2027)". An alternative label should not match another concept's preferred label (VOC-012).
 - `altLabel` may hold synonyms, abbreviations and former labels. `hiddenLabel` may hold misspellings. One text must not be in two label kinds (VOC-013).
 - Labels should be nouns in the reader's words, should start with a capital, must not end with a period, and should use term base terms (VOC-014).

@@ -15,11 +15,13 @@ Une personne qui lit l’une ou l’autre langue voit alors un vrai libellé, ja
 
 [[VOC-011]]
 *VOC-011.* Chaque libellé, définition et note DOIT porter une étiquette de langue qui suit LOC-001 et LOC-002.
-Chacun DOIT exister avec l’étiquette `en` et avec l’étiquette `fr`.
+Chaque libellé préférentiel, définition et note DOIT exister avec l’étiquette `en` et avec l’étiquette `fr`.
 Un schéma PEUT ajouter des libellés en d’autres langues, et des libellés avec une étiquette régionale comme `fr-CA`.
 Un libellé régional existe seulement quand la formulation de cette région diffère.
 Un programme cherche un libellé par la chaîne de repli de LOC-006.
 Les étiquettes de base servent alors au lectorat de chaque région, et les données emploient les clés de DAT-004.
+
+Les libellés alternatifs et cachés PEUVENT n’exister qu’en une langue, car ce sont souvent des synonymes ou des fautes courantes.
 
 [[VOC-012]]
 *VOC-012.* Deux concepts non déconseillés d’un même schéma NE DOIVENT PAS avoir le même libellé préférentiel dans une langue.

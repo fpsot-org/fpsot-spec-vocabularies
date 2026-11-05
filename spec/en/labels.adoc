@@ -15,11 +15,13 @@ A reader in either language then sees a real label, never a code.
 
 [[VOC-011]]
 *VOC-011.* Each label, definition and note MUST carry a language tag that follows LOC-001 and LOC-002.
-Each one MUST exist with the tag `en` and with the tag `fr`.
+Each preferred label, definition and note MUST exist with the tag `en` and with the tag `fr`.
 A scheme MAY add labels in other languages, and labels with a regional tag such as `fr-CA`.
 A regional label exists only when the wording of that region differs.
 A program looks up a label through the fallback chain of LOC-006.
 The base tags then serve every regional reader, and data uses the same keys as DAT-004.
+
+Alternative and hidden labels MAY exist in one language only, since they are often synonyms or misspellings.
 
 [[VOC-012]]
 *VOC-012.* Two concepts of one scheme that are not deprecated MUST NOT have the same preferred label in one language.
