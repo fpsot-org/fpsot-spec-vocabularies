@@ -53,7 +53,7 @@ The check against the scheme still keeps unknown codes out of the data.
 
 === Normative
 
-* link:https://linkml.io/linkml/schemas/enums.html[LinkML, Enums], LinkML, 1.12.1. link:LINKMLENUM_ARCHIVE[Archived copy]
+* link:https://linkml.io/linkml/schemas/enums.html[LinkML, Enums], LinkML, 1.12.1. link:https://web.archive.org/web/20261001144647/https://linkml.io/linkml/schemas/enums.html[Archived copy]
 
 == Document history
 
