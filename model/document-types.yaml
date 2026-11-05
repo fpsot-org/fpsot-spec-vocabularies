@@ -1,0 +1,53 @@
+# SPDX-License-Identifier: Community-Spec-1.0
+id: https://data.example.org/model/document-types
+name: document_types
+title: Document types, bound to a SKOS scheme
+description: >-
+  Example LinkML model of the FPSOT vocabularies specification. The enum
+  DocumentType binds a field to the scheme in document-types.ttl.
+  VOC-060 to VOC-064.
+version: 0.1.0
+license: Community-Spec-1.0
+prefixes:
+  linkml: https://w3id.org/linkml/
+  doctype: https://data.example.org/vocabularies/document-types/concepts/
+  ex: https://data.example.org/model/document-types/
+default_prefix: ex
+default_range: string
+imports:
+  - linkml:types
+
+enums:
+  DocumentType:
+    description: >-
+      Kinds of documents that a public body issues. Generated from release
+      1.1.0 of the scheme https://data.example.org/vocabularies/document-types.
+    enum_uri: https://data.example.org/vocabularies/document-types
+    permissible_values:
+      permit:
+        meaning: doctype:permit
+        description: A document that allows a person or a business to do something that the law controls.
+      building-permit:
+        meaning: doctype:building-permit
+        description: A permit to build, enlarge or demolish a building.
+      certificate:
+        meaning: doctype:certificate
+        description: A document that confirms a fact, such as a birth or a qualification. It allows nothing by itself.
+      decision:
+        meaning: doctype:decision
+        description: A document that gives the answer of a public body to a request, with its reasons.
+      notice:
+        meaning: doctype:notice
+        description: A document that informs a person of a fact or of a coming action. It decides nothing.
+      authorization:
+        meaning: doctype:authorization
+        description: A document that allows an action. Replaced by Permit.
+        deprecated: Deprecated in release 1.1.0. It had the same meaning as permit.
+        deprecated_element_has_exact_replacement: doctype:permit
+
+classes:
+  Examples:
+    tree_root: true
+    description: "Container used only to test the examples of this schema."
+    attributes:
+      documentType: {range: DocumentType}

@@ -1,0 +1,33 @@
+code: CA
+name: {en: Canada, fr: Canada}
+rows:
+  - id: VOC-006
+    text: {en: "The alpha codes of provinces and territories exactly match the codes of Canada Post. People who handle data in departments must use them to store, share and publish data.", fr: "Les codes alphabétiques des provinces et des territoires correspondent exactement aux codes de Postes Canada. Les personnes qui traitent des données dans les ministères doivent les employer pour conserver, échanger et publier des données."}
+    status: same
+    source: {title: "Data Reference Standard on Canadian Provinces and Territories", version: "Effective 2023-10-02", date: "2026-03-13", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html", archive: "GCPROV_ARCHIVE"}
+    last_checked: "2026-11-05"
+  - id: VOC-007
+    text: {en: "If Canada Post changes its codes, the Government of Canada reviews and approves the change separately. The standard does not say that the old code stays.", fr: "Si Postes Canada change ses codes, le gouvernement du Canada examine et approuve le changement à part. La norme ne dit pas que l’ancien code reste."}
+    status: looser
+    source: {title: "Data Reference Standard on Canadian Provinces and Territories", version: "Effective 2023-10-02", date: "2026-03-13", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html", archive: "GCPROV_ARCHIVE"}
+    last_checked: "2026-11-05"
+  - id: VOC-035
+    text: {en: "Stewards should keep a version history of each standard and review it at least once a year. No form of version number is set.", fr: "Les responsables devraient tenir un historique des versions de chaque norme et la revoir au moins une fois par année. Aucune forme de numéro de version n’est fixée."}
+    status: looser
+    source: {title: "Guidance for data reference standard stewards", date: "2026-10-06", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/information-management/guidance-data-reference-standard-stewards.html", archive: "GCSTEW_ARCHIVE"}
+    last_checked: "2026-11-05"
+  - id: VOC-040
+    text: {en: "A standard may be adopted, adapted or authored, and adapting an international standard is one option. Stewards should look for codes and values already used across the government.", fr: "Une norme peut être adoptée, adaptée ou rédigée, et l’adaptation d’une norme internationale est une possibilité. Les responsables devraient chercher les codes et les valeurs déjà employés au sein du gouvernement."}
+    status: same
+    source: {title: "Guidance for data reference standard stewards", date: "2026-10-06", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/information-management/guidance-data-reference-standard-stewards.html", archive: "GCSTEW_ARCHIVE"}
+    last_checked: "2026-11-05"
+  - id: VOC-050
+    text: {en: "Stewards should consider a machine-readable CSV or JSON file, with a stable, versioned API. RDF formats are not named.", fr: "Les responsables devraient envisager un fichier CSV ou JSON lisible par machine, avec une API stable et versionnée. Aucun format RDF n’est nommé."}
+    status: looser
+    source: {title: "Guidance for data reference standard stewards", date: "2026-10-06", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/information-management/guidance-data-reference-standard-stewards.html", archive: "GCSTEW_ARCHIVE"}
+    last_checked: "2026-11-05"
+  - id: VOC-052
+    text: {en: "The reference data on provinces and territories is published as CSV and JSON on the Open Government Portal. No column layout is set for all standards.", fr: "Les données de référence sur les provinces et les territoires sont publiées en CSV et en JSON sur le Portail du gouvernement ouvert. Aucune disposition des colonnes n’est fixée pour toutes les normes."}
+    status: looser
+    source: {title: "Data Reference Standard on Canadian Provinces and Territories", version: "Effective 2023-10-02", date: "2026-03-13", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html", archive: "GCPROV_ARCHIVE"}
+    last_checked: "2026-11-05"

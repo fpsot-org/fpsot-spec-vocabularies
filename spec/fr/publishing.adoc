@@ -1,0 +1,71 @@
+= Publication
+include::_fpsot-terms.adoc[]
+
+Ces règles fixent les fichiers de chaque version, et ce qu’un schéma dit de lui-même.
+Les programmes lisent les fichiers {abbr-rdf-first}, et les personnes lisent un tableau.
+
+== Fichiers
+
+[[VOC-050]]
+*VOC-050.* Un éditeur DOIT publier chaque version d’un schéma en link:https://www.w3.org/TR/turtle/[Turtle] et en link:https://www.w3.org/TR/json-ld11/[JSON-LD 1.1].
+Les deux fichiers DOIVENT contenir les mêmes énoncés.
+Les fichiers DOIVENT employer l’{abbr-utf-8-first}, selon DAT-001.
+Leur nom DEVRAIT être le nom du schéma avec l’extension `.ttl` ou `.jsonld`, comme `document-types.ttl`.
+Le Turtle se lit et se révise facilement dans une demande de tirage.
+Avec le {abbr-json-ld-first}, les personnes qui développent pour le Web lisent les mêmes données avec leurs outils {abbr-json-first}.
+
+[[VOC-051]]
+*VOC-051.* Le fichier Turtle DEVRAIT être la source du schéma, gardée sous gestion de versions.
+Un outil DOIT produire les autres fichiers à partir de lui, et personne ne les modifie à la main.
+Une seule source empêche les fichiers de diverger.
+Chaque changement à un concept paraît alors dans l’historique d’un seul fichier.
+
+[[VOC-052]]
+*VOC-052.* Un éditeur DOIT aussi publier chaque version sous forme de fichier {abbr-csv-first} pour les personnes.
+Selon le link:https://www.rfc-editor.org/info/rfc4180[RFC 4180], il DOIT avoir une ligne d’en-tête, puis une ligne par concept, y compris les concepts déconseillés.
+Ses colonnes DOIVENT être `uri`, `code`, `labelEn`, `labelFr`, `definitionEn`, `definitionFr`, `broader`, `deprecated` et `replacedBy`, dans cet ordre.
+Une colonne qui contient deux valeurs {abbr-uri-first} ou plus DOIT les séparer par une espace.
+La colonne `deprecated` DOIT contenir `true` ou `false`.
+La plupart des personnes ouvrent un vocabulaire dans un tableur, et des colonnes fixes permettent de comparer deux schémas.
+
+== Description du schéma
+
+[[VOC-053]]
+*VOC-053.* Un schéma DOIT indiquer ses libellés et sa définition selon VOC-010 et VOC-015.
+Il DOIT aussi indiquer son éditeur dans `dct:publisher`, sa licence dans `dct:license`, sa version et sa date selon VOC-035.
+Un schéma que la {abbr-fpsot-first} publie DOIT employer une licence ouverte.
+Le lectorat sait alors qui répond d’un schéma et à quelles conditions d’autres peuvent le réutiliser.
+
+== Vérifications et accès
+
+[[VOC-054]]
+*VOC-054.* Une version DOIT réussir des vérifications automatiques avant sa publication.
+Les vérifications DOIVENT couvrir les conditions d’intégrité de la link:https://www.w3.org/TR/skos-reference/[SKOS Reference].
+Elles DOIVENT aussi couvrir chaque règle DOIT de la présente spécification qu’un outil peut tester.
+Une vérification qui échoue DOIT arrêter la publication.
+Un libellé français manquant ou un code réutilisé échappe facilement à la révision et se corrige mal après la publication.
+
+[[VOC-055]]
+*VOC-055.* Chaque {abbr-uri} de schéma, de concept et de collection DOIT se résoudre en `https`.
+Elle DOIT mener les personnes à une page en anglais et en français, et les programmes aux fichiers {abbr-rdf}.
+Les spécifications de {abbr-fpsot} sur les {abbr-api-first} fixent comment servir ces formes, y compris par négociation de contenu.
+Si l’hôte doit changer, chaque ancienne {abbr-uri} DOIT rediriger de façon permanente, selon NAM-083.
+Les fichiers gardent l’ancienne {abbr-uri} comme nom.
+Une {abbr-uri} qui se résout permet à chacun de vérifier le sens d’un code, directement depuis les données.
+
+== Références
+
+=== Références normatives
+
+* link:https://www.w3.org/TR/turtle/[RDF 1.1 Turtle, Terse RDF Triple Language], W3C, recommandation, 2014-02-25. link:TURTLE_ARCHIVE[Copie archivée]
+* link:https://www.w3.org/TR/json-ld11/[JSON-LD 1.1, A JSON-based Serialization for Linked Data], W3C, recommandation, 2020-07-16. link:JSONLD_ARCHIVE[Copie archivée]
+* link:https://www.rfc-editor.org/info/rfc4180[RFC 4180, Common Format and MIME Type for Comma-Separated Values (CSV) Files], IETF, 2005-10. link:RFC4180_ARCHIVE[Copie archivée]
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, recommandation, 2009-08-18. link:SKOSREF_ARCHIVE[Copie archivée]
+
+== Historique du document
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-05 |Première version.
+|===

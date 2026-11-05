@@ -1,0 +1,87 @@
+= Schémas, concepts et codes
+include::_fpsot-terms.adoc[]
+
+Ces règles donnent à chaque vocabulaire et à chacune de ses valeurs une identité qui ne change jamais.
+Le modèle est la link:https://www.w3.org/TR/skos-reference/[SKOS Reference], une recommandation de 2009 du {abbr-w3c-first}.
+Dans les termes du {abbr-skos-first}, un vocabulaire est un schéma de concepts, et chaque valeur est un concept.
+
+== Schémas et concepts
+
+[[VOC-001]]
+*VOC-001.* Un éditeur DOIT publier chaque vocabulaire contrôlé comme un seul schéma de concepts {abbr-skos}.
+Chaque valeur du vocabulaire DOIT être un concept {abbr-skos}, relié à son schéma par `skos:inScheme`.
+Un seul modèle permet à chaque outil de lire chaque vocabulaire, des listes de codes aux thésaurus.
+Les mêmes fichiers servent alors aux programmes, aux modèles de données et aux personnes.
+
+== Adresses
+
+[[VOC-002]]
+*VOC-002.* L’{abbr-uri-first} d’un schéma DOIT employer `https`, sous un domaine que l’éditeur contrôle et compte garder.
+Elle DEVRAIT avoir la forme `https://<hôte>/vocabularies/<nom-du-schéma>`.
+Le nom du schéma DOIT être un nom anglais au pluriel en kebab-case, comme `document-types`, selon NAM-002, NAM-013 et NAM-030.
+L’{abbr-uri} NE DOIT PAS contenir de numéro de version, d’état, de langue ni d’extension de fichier.
+L’exigence NAM-032 fixe la même règle.
+Ces faits changent alors que le schéma reste le même.
+
+[[VOC-003]]
+*VOC-003.* L’{abbr-uri} d’un concept DOIT être l’{abbr-uri} du schéma, suivie de `/concepts/`, puis du code du concept.
+Par exemple : `https://data.example.org/vocabularies/document-types/concepts/building-permit`.
+L’{abbr-uri} d’une collection DOIT être l’{abbr-uri} du schéma, suivie de `/collections/`, puis de son nom en kebab-case.
+Un code d’un autre émetteur garde sa forme dans l’{abbr-uri}, comme le permet NAM-007.
+Tout caractère hors de l’ensemble non réservé du link:https://www.rfc-editor.org/info/rfc3986[RFC 3986] est encodé en pourcentage.
+Chacun peut alors construire l’{abbr-uri} d’un concept à partir d’un code, sans confusion avec une collection.
+
+[[VOC-004]]
+*VOC-004.* Une {abbr-uri} qu’un schéma a publiée DOIT toujours désigner le même schéma, le même concept ou la même collection.
+Elle NE DOIT PAS changer, et elle NE DOIT jamais désigner autre chose, même après que son concept est déconseillé.
+Les données conservées, les autres schémas et les lois pointent vers ces adresses.
+Une {abbr-uri} réutilisée donnerait un nouveau sens aux anciens dossiers, sans aucun signe.
+Les exigences NAM-082 et NAM-083 visent le même but pour les noms et les adresses.
+
+== Codes
+
+[[VOC-005]]
+*VOC-005.* Chaque concept DOIT avoir exactement une `skos:notation` qui est une chaîne simple.
+Cette notation est le code conservé, sans étiquette de langue ni autre type de données.
+Deux concepts d’un même schéma NE DOIVENT PAS partager un code.
+Un concept PEUT avoir d’autres notations, chacune avec un type de données qui nomme un autre système de codes.
+La SKOS Reference conseille déjà une seule notation par concept au sein d’un schéma.
+Un seul code simple par concept rend exact le lien entre les données et le schéma.
+
+[[VOC-006]]
+*VOC-006.* Un code que la {abbr-fpsot-first} ou l’éditeur définit DOIT suivre NAM-060 et DAT-072.
+C’est une chaîne de mots anglais en kebab-case, comme `building-permit`.
+Un code d’un autre émetteur DOIT garder la forme exacte de cet émetteur, selon NAM-007 et DAT-066.
+Par exemple : le code de province `QC`.
+Le code correspond alors aux données de chaque système qui suit les spécifications sur le nommage et les types.
+
+[[VOC-007]]
+*VOC-007.* Le code d’un concept NE DOIT PAS changer.
+Un schéma NE DOIT PAS donner ce code à un autre concept plus tard.
+Pour changer un code, publiez un nouveau concept et déconseillez l’ancien selon VOC-031.
+Il en va de même quand un autre émetteur change un de ses codes.
+NAM-080 vaut au sein d’une version majeure, mais cette règle vaut pour toutes.
+Le code fait partie de l’{abbr-uri} du concept, donc un code changé enfreindrait VOC-004.
+
+[[VOC-008]]
+*VOC-008.* Un code que l’éditeur définit NE DOIT PAS encoder la place du concept dans la hiérarchie.
+Il NE DOIT PAS non plus encoder son ordre ni aucune autre propriété.
+Écrivez `building-permit`, et non `permit-01-building`.
+Un concept qui change de parent aurait sinon besoin d’un nouveau code.
+VOC-007 interdit ce changement.
+Un code d’un autre émetteur garde sa forme, même s’il encode une hiérarchie, comme certains codes d’industries.
+
+== Références
+
+=== Références normatives
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, recommandation, 2009-08-18. link:SKOSREF_ARCHIVE[Copie archivée]
+* link:https://www.rfc-editor.org/info/rfc3986[RFC 3986, Uniform Resource Identifier (URI): Generic Syntax], IETF, STD 66, 2005-01. link:RFC3986_ARCHIVE[Copie archivée]
+
+== Historique du document
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-05 |Première version.
+|===

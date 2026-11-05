@@ -1,0 +1,64 @@
+= Binding in data models
+include::_fpsot-terms.adoc[]
+
+A data model binds a field to a vocabulary, so that the field accepts only the codes of that scheme.
+These rules use link:https://linkml.io/linkml/schemas/enums.html[LinkML enumerations], as the {abbr-fpsot-first} data types specification does.
+
+== Enumerations
+
+[[VOC-060]]
+*VOC-060.* A LinkML model with a field that holds codes of a scheme MUST define an enumeration for it.
+The range of the field MUST be that enumeration.
+The data types specification already sets this form for code values, in its table for DAT-072.
+A validator then rejects any code that the scheme does not hold.
+
+[[VOC-061]]
+*VOC-061.* The name of each permissible value MUST be the code of its concept, under VOC-005.
+Its `meaning` MUST be the concept {abbr-uri-first}, and the `enum_uri` of the enumeration MUST be the scheme {abbr-uri}.
+The model MUST declare a prefix for the scheme, so that a meaning can be short, such as `doctype:building-permit`.
+A code from another issuer keeps its form as the name, such as `QC`, under DAT-066.
+Each value then leads to its labels, definition and mappings in the scheme.
+
+[[VOC-062]]
+*VOC-062.* An enumeration MUST list every concept of the release it comes from, deprecated ones included.
+A deprecated value MUST carry the LinkML `deprecated` slot, with the reason.
+When the concept has one replacement, the value MUST also carry `deprecated_element_has_exact_replacement`, with the {abbr-uri} of the replacement.
+Stored records with old codes must still pass validation, as VOC-033 requires.
+The marks let tools warn before someone enters an old code in new data.
+
+[[VOC-063]]
+*VOC-063.* A tool SHOULD generate each enumeration from the Turtle file of a release, instead of a person.
+Its description MUST name the scheme release it comes from.
+A permissible value MAY copy the English definition of its concept into its `description`.
+A generated list cannot miss a concept or keep a stale one.
+The release number tells a reader which version of the scheme the model checks.
+
+== Stored data
+
+[[VOC-064]]
+*VOC-064.* Data MUST store the code of a concept, never its {abbr-uri} or its label.
+A screen MUST show the label from the scheme, under DAT-073.
+The code is short, stable and the same in every language.
+Labels change and differ by language, and a full {abbr-uri} only repeats the scheme in each record.
+
+[[VOC-065]]
+*VOC-065.* A field MAY use the type `CodeValue` of the data types specification instead of an enumeration.
+This fits a scheme that is too large or that changes too often.
+The system MUST then check each code against the published scheme before it stores the code.
+A code from another issuer uses a string with the pattern of that issuer instead, under DAT-066.
+A list of thousands of codes, such as an industry classification, would make the model hard to read.
+The check against the scheme still keeps unknown codes out of the data.
+
+== References
+
+=== Normative
+
+* link:https://linkml.io/linkml/schemas/enums.html[LinkML, Enums], LinkML, 1.12.1. link:LINKMLENUM_ARCHIVE[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===

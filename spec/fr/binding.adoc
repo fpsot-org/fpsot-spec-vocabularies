@@ -1,0 +1,64 @@
+= Liaison dans les modèles de données
+include::_fpsot-terms.adoc[]
+
+Un modèle de données lie un champ à un vocabulaire, pour qu’il n’accepte que les codes de ce schéma.
+Ces règles emploient les link:https://linkml.io/linkml/schemas/enums.html[énumérations LinkML], comme la spécification de la {abbr-fpsot-first} sur les types de données.
+
+== Énumérations
+
+[[VOC-060]]
+*VOC-060.* Un modèle LinkML dont un champ contient des codes d’un schéma DOIT définir une énumération pour ce schéma.
+Le domaine de valeurs du champ DOIT être cette énumération.
+La spécification sur les types de données fixe déjà cette forme pour les valeurs de code, pour DAT-072.
+Un validateur refuse alors tout code que le schéma ne contient pas.
+
+[[VOC-061]]
+*VOC-061.* Le nom de chaque valeur permise DOIT être le code de son concept, selon VOC-005.
+Son `meaning` DOIT être l’{abbr-uri-first} du concept, et l’`enum_uri` de l’énumération DOIT être l’{abbr-uri} du schéma.
+Le modèle DOIT déclarer un préfixe pour le schéma, pour qu’un sens puisse être court, comme `doctype:building-permit`.
+Un code d’un autre émetteur garde sa forme comme nom, comme `QC`, selon DAT-066.
+Chaque valeur mène alors à ses libellés, à sa définition et à ses correspondances dans le schéma.
+
+[[VOC-062]]
+*VOC-062.* Une énumération DOIT lister chaque concept de la version dont elle vient, y compris les concepts déconseillés.
+Une valeur déconseillée DOIT porter l’attribut LinkML `deprecated`, avec la raison.
+Quand le concept a un seul remplaçant, la valeur DOIT aussi porter `deprecated_element_has_exact_replacement`, avec l’{abbr-uri} du remplaçant.
+Les dossiers conservés avec d’anciens codes doivent encore réussir la validation, comme l’exige VOC-033.
+Ces marques permettent aux outils d’avertir avant qu’une personne entre un ancien code dans de nouvelles données.
+
+[[VOC-063]]
+*VOC-063.* Un outil DEVRAIT produire chaque énumération à partir du fichier Turtle d’une version, à la place d’une personne.
+Sa description DOIT nommer la version du schéma dont elle vient.
+Une valeur permise PEUT copier la définition anglaise de son concept dans sa `description`.
+Une liste produite ne peut pas oublier un concept ni en garder un périmé.
+Le numéro de version indique au lectorat quelle version du schéma le modèle vérifie.
+
+== Données conservées
+
+[[VOC-064]]
+*VOC-064.* Les données DOIVENT conserver le code d’un concept, jamais son {abbr-uri} ni son libellé.
+Un écran DOIT montrer le libellé tiré du schéma, selon DAT-073.
+Le code est court, stable et le même dans toutes les langues.
+Les libellés changent selon la version et la langue, et une {abbr-uri} complète répète le schéma dans chaque dossier.
+
+[[VOC-065]]
+*VOC-065.* Un champ PEUT employer le type `CodeValue` de la spécification sur les types de données au lieu d’une énumération.
+Cela convient à un schéma trop grand ou qui change trop souvent.
+Le système DOIT alors vérifier chaque code selon le schéma publié avant de le conserver.
+Un code d’un autre émetteur emploie plutôt une chaîne avec le motif de cet émetteur, selon DAT-066.
+Une liste de milliers de codes, comme une classification des industries, rendrait le modèle difficile à lire.
+La vérification selon le schéma garde quand même les codes inconnus hors des données.
+
+== Références
+
+=== Références normatives
+
+* link:https://linkml.io/linkml/schemas/enums.html[LinkML, Enums], LinkML, 1.12.1. link:LINKMLENUM_ARCHIVE[Copie archivée]
+
+== Historique du document
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-05 |Première version.
+|===

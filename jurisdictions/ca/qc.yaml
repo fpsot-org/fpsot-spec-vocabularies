@@ -1,0 +1,28 @@
+code: CA-QC
+name: {en: Québec, fr: Québec}
+rows:
+  - id: VOC-015
+    text: {en: "The description of the fields of an open dataset should give at least each attribute with its definition, and the value domains where they apply. Each value needs no definition of its own.", fr: "La description des champs d’un jeu de données ouvertes devrait donner au moins chaque attribut avec sa définition, et les domaines de valeurs s’il y a lieu. Chaque valeur n’a pas besoin de sa propre définition."}
+    status: looser
+    source: {title: "Lignes directrices sur la diffusion de données ouvertes, Données Québec", url: "https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/", archive: "https://web.archive.org/web/20261024232216/https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/"}
+    last_checked: "2026-11-05"
+  - id: VOC-030
+    text: {en: "For open datasets, archiving is preferred to deletion. An old dataset may still be deleted when its data stays available in another one.", fr: "Pour les jeux de données ouvertes, l’archivage est privilégié à la suppression. Un ancien jeu peut quand même être supprimé quand ses données restent accessibles dans un autre."}
+    status: looser
+    source: {title: "Lignes directrices sur la diffusion de données ouvertes, Données Québec", url: "https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/", archive: "https://web.archive.org/web/20261024232216/https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/"}
+    last_checked: "2026-11-05"
+  - id: VOC-034
+    text: {en: "Publishers are advised to document important changes to a dataset, in a resource or in the metadata.", fr: "Il est recommandé aux diffuseurs de documenter les modifications importantes d’un jeu de données, dans une ressource ou dans les métadonnées."}
+    status: looser
+    source: {title: "Lignes directrices sur la diffusion de données ouvertes, Données Québec", url: "https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/", archive: "https://web.archive.org/web/20261024232216/https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/"}
+    last_checked: "2026-11-05"
+  - id: VOC-040
+    text: {en: "Where recognized standards exist for a dataset, they must be favored as far as possible.", fr: "Quand des normes reconnues existent pour un jeu de données, elles doivent être favorisées dans la mesure du possible."}
+    status: same
+    source: {title: "Lignes directrices sur la diffusion de données ouvertes, Données Québec", url: "https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/", archive: "https://web.archive.org/web/20261024232216/https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/"}
+    last_checked: "2026-11-05"
+  - id: VOC-052
+    text: {en: "CSV is strongly recommended for tables, in UTF-8. The first line holds the column headers, without accents or spaces, and commas separate the fields.", fr: "Le CSV est fortement recommandé pour les tableaux, en UTF-8. La première ligne contient les en-têtes de colonnes, sans accents ni espaces, et des virgules séparent les champs."}
+    status: same
+    source: {title: "Lignes directrices sur la diffusion de données ouvertes, Données Québec", url: "https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/", archive: "https://web.archive.org/web/20261024232216/https://www.donneesquebec.ca/lignes-directrices-sur-la-diffusion-de-donnees-ouvertes/"}
+    last_checked: "2026-11-05"

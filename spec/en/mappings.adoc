@@ -1,0 +1,64 @@
+= Mappings
+include::_fpsot-terms.adoc[]
+
+A mapping links a concept to a concept of another scheme, such as a table of an international body.
+Data can then move between systems that use different vocabularies.
+
+== Reuse first
+
+[[VOC-040]]
+*VOC-040.* Before a project creates a scheme, it SHOULD look for one that an authority already publishes, and use it.
+One example is the data reference standard of a government.
+Another is a table of the link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies], from the Publications Office of the European Union.
+A project that still needs its own scheme SHOULD map its concepts to the scheme of the authority.
+Each new scheme is one more list for other systems to translate.
+
+== Mapping properties
+
+[[VOC-041]]
+*VOC-041.* A mapping MUST use the mapping property that matches how close the two concepts are.
+`skos:exactMatch` means that the two concepts can replace each other in every use.
+`skos:closeMatch` means that they can replace each other in some uses only.
+`skos:broadMatch` and `skos:narrowMatch` mean a wider or narrower concept, and `skos:relatedMatch` covers any other link.
+In the link:https://www.w3.org/TR/skos-reference/[SKOS Reference], exact matches carry over from one scheme to the next.
+Close matches do not, so a doubtful pair is a close match.
+
+[[VOC-042]]
+*VOC-042.* A mapping MUST point to the concept {abbr-uri-first} that the outside authority publishes.
+A project MUST NOT make up a {abbr-uri} in the domain of another body.
+Some code lists publish no {abbr-uri}, such as link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166].
+For them, a project SHOULD map to a public scheme that carries those codes as notations.
+The country table of the EU Vocabularies carries the ISO 3166-1 codes of each country, for example.
+A made-up address would point to nothing, or later to something else.
+
+[[VOC-043]]
+*VOC-043.* A scheme MUST NOT link concepts with `owl:sameAs`.
+For one pair of concepts, it MUST NOT state an exact match together with a broad or related match.
+Mapping properties MUST NOT join two concepts of the same scheme, which use the links of VOC-021 and VOC-023.
+`owl:sameAs` makes two concepts one resource, so each would take on the labels and links of the other.
+The second condition is one of the integrity conditions of the {abbr-skos-first} model.
+
+[[VOC-044]]
+*VOC-044.* A scheme MUST name each outside scheme it maps to with `dct:references`.
+A change note on the scheme MUST give the release or date of each outside scheme that the check used.
+The release that follows a new outside release SHOULD check the mappings again.
+Outside schemes deprecate and split concepts too, and a mapping can go stale without any sign.
+
+== References
+
+=== Normative
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, Recommendation, 2009-08-18. link:SKOSREF_ARCHIVE[Archived copy]
+
+=== Informative
+
+* link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies, Authority tables], Publications Office of the European Union, release 20260923-0, 2026-09-23. link:EUAT_ARCHIVE[Archived copy]
+* link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166 Country Codes], ISO. link:https://web.archive.org/web/20261027022740/https://www.iso.org/iso-3166-country-codes.html[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===

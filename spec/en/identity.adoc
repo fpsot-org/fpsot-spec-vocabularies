@@ -1,0 +1,86 @@
+= Schemes, concepts and codes
+include::_fpsot-terms.adoc[]
+
+These rules give each vocabulary and each of its values one identity that never changes.
+The model is the link:https://www.w3.org/TR/skos-reference/[SKOS Reference], which the {abbr-w3c-first} approved in 2009.
+In {abbr-skos-first} terms, a vocabulary is a concept scheme, and each value is a concept.
+
+== Schemes and concepts
+
+[[VOC-001]]
+*VOC-001.* A publisher MUST publish each controlled vocabulary as one {abbr-skos} concept scheme.
+Each value of the vocabulary MUST be a {abbr-skos} concept, linked to its scheme with `skos:inScheme`.
+One model lets every tool read every vocabulary, from code lists to thesauri.
+The same files then serve programs, data models and people.
+
+== Addresses
+
+[[VOC-002]]
+*VOC-002.* A scheme {abbr-uri-first} MUST use `https`, under a domain that the publisher controls and plans to keep.
+It SHOULD have the form `https://<host>/vocabularies/<scheme-name>`.
+The scheme name MUST be an English plural noun in kebab-case, such as `document-types`, under NAM-002, NAM-013 and NAM-030.
+The {abbr-uri} MUST NOT hold a version number, a status, a language or a file name extension, as NAM-032 sets.
+These facts change while the scheme stays the same.
+
+[[VOC-003]]
+*VOC-003.* A concept {abbr-uri} MUST be the scheme {abbr-uri}, then `/concepts/`, then the code of the concept.
+An example is `https://data.example.org/vocabularies/document-types/concepts/building-permit`.
+A collection {abbr-uri} MUST be the scheme {abbr-uri}, then `/collections/`, then its name in kebab-case.
+A code from another issuer keeps its form in the {abbr-uri}, as NAM-007 allows.
+Any character outside the unreserved set of link:https://www.rfc-editor.org/info/rfc3986[RFC 3986] is percent-encoded.
+Anyone can then build a concept {abbr-uri} from a stored code, and concepts never clash with collections.
+
+[[VOC-004]]
+*VOC-004.* A {abbr-uri} that a scheme has published MUST keep naming the same scheme, concept or collection forever.
+It MUST NOT change, and it MUST NOT ever name anything else, even after a deprecation.
+Stored data, other schemes and laws point to these addresses.
+A reused {abbr-uri} would give old records a new meaning without any sign.
+Rules NAM-082 and NAM-083 set the same intent for names and addresses.
+
+== Codes
+
+[[VOC-005]]
+*VOC-005.* Each concept MUST have exactly one `skos:notation` that is a plain string.
+This notation is the stored code, with no language tag and no other datatype.
+Two concepts of one scheme MUST NOT share a code.
+A concept MAY have other notations, each with a datatype that names another code system.
+The {abbr-skos} Reference already advises one notation per concept within a scheme.
+One plain code per concept makes the link between data and the scheme exact.
+
+[[VOC-006]]
+*VOC-006.* A code that {abbr-fpsot-first} or the publisher defines MUST follow NAM-060 and DAT-072.
+It is a string of English words in kebab-case, such as `building-permit`.
+A code from another issuer MUST keep the exact form of that issuer, under NAM-007 and DAT-066.
+An example is the province code `QC`.
+The code then matches the data of every system that follows the naming and data types specifications.
+
+[[VOC-007]]
+*VOC-007.* The code of a concept MUST NOT change.
+A scheme MUST NOT give a code to another concept later.
+To change a code, publish a new concept and deprecate the old one under VOC-031.
+The same holds when another issuer changes one of its codes.
+NAM-080 holds within one major version, but this rule holds across all of them.
+The code is part of the concept {abbr-uri}, so a changed code would break VOC-004.
+
+[[VOC-008]]
+*VOC-008.* A code that the publisher defines MUST NOT encode the place of the concept in the hierarchy.
+It MUST NOT encode its order or any other property either.
+Write `building-permit`, not `permit-01-building`.
+A concept that moves to another parent would otherwise need a new code.
+VOC-007 forbids that change.
+A code from another issuer keeps its form, even when it encodes a hierarchy, as some industry codes do.
+
+== References
+
+=== Normative
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, Recommendation, 2009-08-18. link:SKOSREF_ARCHIVE[Archived copy]
+* link:https://www.rfc-editor.org/info/rfc3986[RFC 3986, Uniform Resource Identifier (URI): Generic Syntax], IETF, STD 66, 2005-01. link:RFC3986_ARCHIVE[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===
