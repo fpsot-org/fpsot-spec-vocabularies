@@ -1,0 +1,34 @@
+= FPSOT vocabularies specification
+include::_fpsot-terms.adoc[]
+
+Replace this page with the normative text of the specification.
+Start with the scope, then the conformance classes, then the requirements.
+
+== Conformance
+
+[quote, RFC 8174]
+____
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 (RFC 2119, RFC 8174) when, and only when, they appear in all capitals, as shown here.
+____
+
+The French version uses the keywords of requirement WRT-011 of the {abbr-fpsot-first} writing specification.
+
+== Requirements
+
+Give each requirement an anchor line with its ID, directly above its paragraph.
+The anchor looks like `+[[XYZ-001]]+`.
+The example below shows the form. Replace it with the first requirement.
+
+[[TPL-001]]
+*TPL-001.* A normative statement MUST use one of the {abbr-bcp-first} 14 keywords in capitals.
+The keyword gives the rule its strength.
+
+== Document history
+
+Add one row for each version that changes this page.
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-03 |First version.
+|===

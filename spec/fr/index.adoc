@@ -1,0 +1,35 @@
+= Spécification FPSOT sur les vocabulaires
+:translation-status: pending
+include::_fpsot-terms.adoc[]
+
+Remplacez cette page par le texte normatif de la spécification.
+Commencez par la portée, puis les classes de conformité, puis les exigences.
+
+== Conformité
+
+[quote, RFC 8174]
+____
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 (RFC 2119, RFC 8174) when, and only when, they appear in all capitals, as shown here.
+____
+
+La version française emploie les mots clés français de la spécification de rédaction de la {abbr-fpsot-first}, à l'exigence WRT-011.
+
+== Exigences
+
+Donnez à chaque exigence une ancre avec son identifiant, juste au-dessus de son paragraphe.
+L'ancre ressemble à `+[[XYZ-001]]+`.
+L'exemple ci-dessous montre la forme. Remplacez-le par la première exigence.
+
+[[TPL-001]]
+*TPL-001.* Un énoncé normatif DOIT employer un des mots clés du {abbr-bcp-first} 14, en majuscules.
+Le mot clé donne sa force à la règle.
+
+== Historique du document
+
+Ajoutez une ligne pour chaque version qui modifie cette page.
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-03 |Première version.
+|===
