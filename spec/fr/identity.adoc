@@ -1,0 +1,93 @@
+= Schémas, concepts et codes
+include::_fpsot-terms.adoc[]
+
+Ces règles donnent à chaque vocabulaire et à chacune de ses valeurs une identité qui ne change jamais.
+Le modèle est la link:https://www.w3.org/TR/skos-reference/[SKOS Reference], une recommandation de 2009 du {abbr-w3c-first}.
+Dans les termes du {abbr-skos-first}, un vocabulaire est un schéma de concepts, et chaque valeur est un concept.
+
+== Schémas et concepts
+
+[[VOC-001]]
+*VOC-001.* Un éditeur DOIT publier chaque vocabulaire contrôlé comme un seul schéma de concepts {abbr-skos}.
+Chaque valeur du vocabulaire DOIT être un concept {abbr-skos}, relié à son schéma par `skos:inScheme`.
+Un seul modèle permet à chaque outil de lire chaque vocabulaire, des listes de codes aux thésaurus.
+Les mêmes fichiers servent alors aux programmes, aux modèles de données et aux personnes.
+
+== Adresses
+
+[[VOC-002]]
+*VOC-002.* L’{abbr-uri-first} d’un schéma DOIT employer `https`, sous un domaine que l’éditeur contrôle et compte garder.
+Elle DEVRAIT avoir la forme `+https://<hôte>/vocabularies/<nom-du-schéma>+`.
+Le nom du schéma DOIT être un nom anglais au pluriel en kebab-case, comme `document-types`, selon NAM-002, NAM-013 et NAM-030.
+L’{abbr-uri} NE DOIT PAS contenir de numéro de version, d’état, de langue ni d’extension de fichier.
+L’exigence NAM-032 fixe la même règle.
+Ces faits changent alors que le schéma reste le même.
+
+[[VOC-003]]
+*VOC-003.* L’{abbr-uri} d’un concept DOIT être l’{abbr-uri} du schéma, suivie de `/concepts/`, puis du code du concept.
+Par exemple : `https://data.example.org/vocabularies/document-types/concepts/building-permit`.
+L’{abbr-uri} d’une collection DOIT être l’{abbr-uri} du schéma, suivie de `/collections/`, puis de son nom en kebab-case.
+Un code simple d’un autre émetteur selon VOC-006 garde sa forme dans l’{abbr-uri}, comme le permet NAM-007.
+Tout caractère hors de l’ensemble non réservé du link:https://www.rfc-editor.org/info/rfc3986[RFC 3986] est encodé en pourcentage.
+Chacun peut alors construire l’{abbr-uri} d’un concept à partir d’un code, sans confusion avec une collection.
+
+[[VOC-004]]
+*VOC-004.* Une {abbr-uri} qu’un schéma a publiée DOIT toujours désigner le même schéma, le même concept ou la même collection.
+Elle NE DOIT PAS changer, et elle NE DOIT jamais désigner autre chose, même après que son concept est déconseillé.
+Les données conservées, les autres schémas et les lois pointent vers ces adresses.
+Une {abbr-uri} réutilisée donnerait un nouveau sens aux anciens dossiers, sans aucun signe.
+Les exigences NAM-082 et NAM-083 visent le même but pour les noms et les adresses.
+
+== Codes
+
+[[VOC-005]]
+*VOC-005.* Chaque concept DOIT avoir exactement une `skos:notation` en chaîne simple, sans étiquette de langue ni type de données.
+Ce choix s’écarte exprès des littéraux typés que le {abbr-skos} emploie par convention.
+Cette notation est le code conservé, et deux concepts d’un même schéma NE DOIVENT PAS la partager.
+La SKOS Reference conseille que deux concepts d’un même schéma ne partagent pas une notation.
+Un concept PEUT avoir d’autres notations, chacune avec un type de données qui nomme un autre système de codes.
+Les systèmes conservent et comparent les codes en texte brut, et un code par concept garde le lien exact.
+
+[[VOC-006]]
+*VOC-006.* Un code que la {abbr-fpsot-first} ou l’éditeur définit DOIT suivre NAM-060 et DAT-072, comme `building-permit`.
+Un code d’un autre émetteur, comme le code de province `QC`, DOIT garder sa forme exacte, selon NAM-007 et DAT-066.
+Le code correspond alors aux données de chaque système qui suit les spécifications sur le nommage et les types.
+Si cet émetteur peut réutiliser des codes, un schéma qui reproduit sa liste DOIT employer des codes simples de l’éditeur.
+Le code de l’émetteur devient alors une notation typée, comme dans les tables des link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies].
+L’autre choix est d’établir une correspondance avec le schéma de l’émetteur selon VOC-042, sans reproduire sa liste.
+
+[[VOC-007]]
+*VOC-007.* Le code d’un concept NE DOIT PAS changer, ni passer plus tard à un autre concept.
+Pour changer un code, publiez un nouveau concept et déconseillez l’ancien selon VOC-031.
+Il en va de même quand un autre émetteur change un de ses codes.
+VOC-006 couvre un émetteur qui réutilise un code, comme l’link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166-1] qui a donné `CS` à deux pays différents.
+NAM-080 vaut au sein d’une version majeure, mais cette règle vaut pour toutes.
+Le code fait partie de l’{abbr-uri} du concept, donc un code changé enfreindrait VOC-004.
+
+[[VOC-008]]
+*VOC-008.* Un code que l’éditeur définit NE DOIT PAS encoder la place du concept dans la hiérarchie.
+Il NE DOIT PAS non plus encoder son ordre ni aucune autre propriété.
+Écrivez `building-permit`, et non `permit-01-building`.
+Un concept qui change de parent aurait sinon besoin d’un nouveau code.
+VOC-007 interdit ce changement.
+Un code d’un autre émetteur garde sa forme, même s’il encode une hiérarchie, comme certains codes de classification des industries.
+
+== Références
+
+=== Références normatives
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, recommandation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Copie archivée]
+* link:https://www.rfc-editor.org/info/rfc3986[RFC 3986, Uniform Resource Identifier (URI): Generic Syntax], IETF, STD 66, 2005-01. link:https://web.archive.org/web/20261104214241/https://www.rfc-editor.org/info/rfc3986/[Copie archivée]
+
+=== Références informatives
+
+* link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies, Authority tables], Office des publications de l’Union européenne, version 20260923-0, 2026-09-23. link:https://web.archive.org/web/20261015110940/https://op.europa.eu/en/web/eu-vocabularies/authority-tables[Copie archivée]
+* link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166 Country Codes], ISO. link:https://web.archive.org/web/20261027022740/https://www.iso.org/iso-3166-country-codes.html[Copie archivée]
+
+== Historique du document
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-05 |Première version.
+|===

@@ -1,0 +1,71 @@
+= Publishing
+include::_fpsot-terms.adoc[]
+
+These rules set the files of each release, and what a scheme says about itself.
+Programs read the {abbr-rdf-first} files, and people read a table.
+
+== Files
+
+[[VOC-050]]
+*VOC-050.* A publisher MUST publish each release of a scheme as link:https://www.w3.org/TR/turtle/[Turtle] and as link:https://www.w3.org/TR/json-ld11/[JSON-LD 1.1].
+Both files MUST hold the same statements.
+The files MUST use {abbr-utf-8-first}, under DAT-001.
+Their names SHOULD be the scheme name with the extensions `.ttl` and `.jsonld`, such as `document-types.ttl`.
+Turtle is easy to read and to review in a pull request.
+With {abbr-json-ld-first}, web developers can read the same data with their usual {abbr-json-first} tools.
+
+[[VOC-051]]
+*VOC-051.* The Turtle file SHOULD be the source of the scheme, kept under version control.
+A tool MUST generate the other files from the source, and nobody edits them by hand.
+One source keeps the files from drifting apart.
+Each change to a concept then shows in the history of one file.
+
+[[VOC-052]]
+*VOC-052.* A publisher MUST also publish each release as a {abbr-csv-first} file for people.
+Under link:https://www.rfc-editor.org/info/rfc4180[RFC 4180], it MUST have a header row, then one row per concept, deprecated ones included.
+Its columns MUST be `uri`, `code`, `labelEn`, `labelFr`, `definitionEn`, `definitionFr`, `broader`, `deprecated` and `replacedBy`, in that order.
+A column with two or more {abbr-uri-first} values MUST separate them with one space.
+The `deprecated` column MUST hold `true` or `false`.
+Most people open a vocabulary in a spreadsheet, and fixed columns let them compare two schemes.
+
+== Description of the scheme
+
+[[VOC-053]]
+*VOC-053.* A scheme MUST state its labels and definition under VOC-010 and VOC-015.
+It MUST also state its publisher in `dct:publisher`, its license in `dct:license`, its version and its date under VOC-035.
+A scheme that {abbr-fpsot-first} publishes MUST use an open license.
+A reader can then tell who answers for a scheme and on what terms others can reuse it.
+
+== Checks and access
+
+[[VOC-054]]
+*VOC-054.* A release MUST pass automatic checks before anyone publishes it.
+The checks MUST cover the integrity conditions of the link:https://www.w3.org/TR/skos-reference/[SKOS Reference].
+They MUST also cover each MUST rule of this specification that a tool can test.
+A failed check MUST stop the release.
+A missing French label or a reused code is easy to miss in review and hard to fix after release.
+
+[[VOC-055]]
+*VOC-055.* Each scheme, concept and collection {abbr-uri} MUST resolve over `https`.
+It MUST lead people to a page in English and in French, and programs to the {abbr-rdf} files.
+The {abbr-fpsot} specifications on {abbr-api-first} design set how a service serves these forms, including content negotiation.
+If the host must move, each old {abbr-uri} MUST redirect permanently, under NAM-083.
+The files keep the old {abbr-uri} as the name.
+A {abbr-uri} that resolves lets anyone check what a code means, straight from the data.
+
+== References
+
+=== Normative
+
+* link:https://www.w3.org/TR/turtle/[RDF 1.1 Turtle, Terse RDF Triple Language], W3C, Recommendation, 2014-02-25. link:https://web.archive.org/web/20261026222351/https://www.w3.org/TR/turtle/[Archived copy]
+* link:https://www.w3.org/TR/json-ld11/[JSON-LD 1.1, A JSON-based Serialization for Linked Data], W3C, Recommendation, 2020-07-16. link:https://web.archive.org/web/20261021045330/https://www.w3.org/TR/json-ld11/[Archived copy]
+* link:https://www.rfc-editor.org/info/rfc4180[RFC 4180, Common Format and MIME Type for Comma-Separated Values (CSV) Files], IETF, 2005-10. link:https://web.archive.org/web/20261023100115/https://www.rfc-editor.org/info/rfc4180/[Archived copy]
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, Recommendation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===

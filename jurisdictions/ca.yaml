@@ -1,0 +1,23 @@
+code: CA
+name: {en: Canada, fr: Canada}
+rows:
+  - id: VOC-006
+    text: {en: "The alpha codes of provinces and territories exactly match the codes of Canada Post. People who handle data in departments must use them to share data within the federal government and to publish it on the Open Government Portal.", fr: "Les codes alphabétiques des provinces et des territoires correspondent exactement aux codes de Postes Canada. Les personnes qui traitent des données dans les ministères doivent les employer pour échanger des données au sein du gouvernement fédéral et pour les publier sur le Portail du gouvernement ouvert."}
+    status: same
+    source: {title: "Data Reference Standard on Canadian Provinces and Territories", version: "Effective 2023-10-02", date: "2025-06-09", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html", archive: "https://web.archive.org/web/20251115004539/https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html"}
+    last_checked: "2026-11-05"
+  - id: VOC-007
+    text: {en: "If Canada Post changes its codes, the Government of Canada reviews and approves the change separately. The standard says that a version history will be kept when changes occur, but not that the old code stays.", fr: "Si Postes Canada change ses codes, le gouvernement du Canada examine et approuve le changement à part. La norme dit qu’un historique des versions sera tenu lors des changements, mais pas que l’ancien code reste."}
+    status: looser
+    source: {title: "Data Reference Standard on Canadian Provinces and Territories", version: "Effective 2023-10-02", date: "2025-06-09", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html", archive: "https://web.archive.org/web/20251115004539/https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html"}
+    last_checked: "2026-11-05"
+  - id: VOC-035
+    text: {en: "Stewards review and update each standard on a regular schedule, and propose a maintenance schedule for it. No form of version number is set.", fr: "Les responsables revoient et mettent à jour chaque norme selon un calendrier régulier, et proposent un calendrier d’entretien pour elle. Aucune forme de numéro de version n’est fixée."}
+    status: looser
+    source: {title: "About data and metadata reference standards", date: "2025-10-16", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/about-data-metadata-reference-standards.html", archive: "https://web.archive.org/web/20260114165534/https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/about-data-metadata-reference-standards.html"}
+    last_checked: "2026-11-05"
+  - id: VOC-052
+    text: {en: "The reference data on provinces and territories is published as CSV and JSON on the Open Government Portal. No column layout is set for all standards.", fr: "Les données de référence sur les provinces et les territoires sont publiées en CSV et en JSON sur le Portail du gouvernement ouvert. Aucune disposition des colonnes n’est fixée pour toutes les normes."}
+    status: looser
+    source: {title: "Data Reference Standard on Canadian Provinces and Territories", version: "Effective 2023-10-02", date: "2025-06-09", url: "https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html", archive: "https://web.archive.org/web/20251115004539/https://www.canada.ca/en/government/system/digital-government/digital-government-innovations/enabling-interoperability/gc-enterprise-data-reference-standards/data-reference-standard-canadian-provinces-territories.html"}
+    last_checked: "2026-11-05"

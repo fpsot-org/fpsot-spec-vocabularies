@@ -1,0 +1,85 @@
+= Cycle de vie et versions
+include::_fpsot-terms.adoc[]
+
+Les dossiers gardent leurs codes pendant des décennies, alors qu’un vocabulaire change sans cesse.
+Ces règles permettent à un schéma de changer sans briser aucun dossier qui l’emploie.
+
+== Concepts
+
+[[VOC-030]]
+*VOC-030.* Un éditeur NE DOIT PAS supprimer un concept publié.
+Chaque version suivante du schéma DOIT encore le contenir, avec son {abbr-uri-first}, son code, ses libellés et sa définition.
+Un dossier de n’importe quelle année peut alors encore montrer le libellé de son code.
+Un concept supprimé laisse aux anciens dossiers un code que personne ne peut lire.
+
+[[VOC-031]]
+*VOC-031.* Pour retirer un concept de l’usage, une version DOIT le marquer avec `owl:deprecated true` et garder ses autres liens.
+Elle DOIT aussi ajouter une note de modification selon VOC-034 qui en donne la raison.
+Quand un autre concept prend sa place, la version DOIT relier les deux par `dct:isReplacedBy` et `dct:replaces`.
+Un concept divisé en deux reçoit deux remplaçants, et chaque concept fusionné pointe vers le même remplaçant.
+L’Office des publications de l’Union européenne marque de la même façon les concepts retirés des link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[tables d’autorité des EU Vocabularies].
+Les programmes peuvent alors déplacer les anciennes données vers le nouveau code sans deviner.
+
+[[VOC-032]]
+*VOC-032.* Le sens d’un concept NE DOIT PAS changer.
+Quand le sens doit changer, une version DOIT ajouter un nouveau concept et déconseiller l’ancien, selon VOC-031.
+Une correction qui garde le sens, comme une définition plus claire, suit VOC-016.
+Les anciens dossiers ont employé l’ancien sens.
+Un nouveau sens sous l’ancien code changerait ce qu’ils disent.
+
+[[VOC-033]]
+*VOC-033.* Un système DOIT accepter un code déconseillé dans les données conservées, et DOIT montrer son libellé.
+Il NE DOIT PAS offrir un concept déconseillé comme choix pour de nouvelles données.
+Il DEVRAIT plutôt offrir le remplaçant, s’il existe.
+Les anciens dossiers restent valides et lisibles, et les nouveaux emploient les codes actuels.
+
+== Notes de modification
+
+[[VOC-034]]
+*VOC-034.* Tout changement aux libellés, à la définition, à la hiérarchie, aux correspondances ou à l’état DOIT ajouter une note.
+Cette note de modification est une `skos:changeNote` en anglais et en français.
+La note DOIT commencer par la date et le numéro de la version, comme `2026-11-05, 1.1.0 :`.
+La version DOIT aussi fixer `dct:modified` sur le concept à cette date.
+Le lectorat voit alors pourquoi un concept a changé, sans fouiller l’historique des fichiers.
+
+== Versions du schéma
+
+[[VOC-035]]
+*VOC-035.* Chaque version d’un schéma DOIT avoir un numéro selon la link:https://semver.org/lang/fr/spec/v2.0.0.html[gestion sémantique de version 2.0.0].
+Le numéro va dans `owl:versionInfo`, et la date de la version dans `dct:modified`.
+Une version de correctif corrige seulement du texte et garde chaque sens.
+Une version mineure peut ajouter des concepts et des correspondances, déconseiller des concepts ou changer la hiérarchie.
+Un schéma NE DEVRAIT jamais avoir besoin d’une version majeure, puisque aucune règle ici ne permet de rien retirer.
+Une version majeure NE DOIT quand même PAS enfreindre VOC-004, VOC-007 ni VOC-030.
+
+[[VOC-036]]
+*VOC-036.* Les fichiers de chaque version DOIVENT rester accessibles à l’{abbr-uri} du schéma, suivie de `/versions/`, puis du numéro.
+L’{abbr-uri} du schéma elle-même DOIT servir la dernière version.
+Une adresse avec version désigne des fichiers, et non des concepts, donc chaque concept garde son {abbr-uri} unique.
+Un système peut alors vérifier ses données selon la version exacte qu’il a employée.
+
+[[VOC-037]]
+*VOC-037.* La description d’un schéma DOIT dire si une version mineure peut ajouter des concepts, selon NAM-081.
+La vérification selon une énumération s’applique quand un système écrit de nouvelles données.
+Un système DOIT accepter et garder les données lues d’autres systèmes, même avec des codes inconnus de son énumération.
+L’autre choix est de produire de nouveau l’énumération à partir de la version courante, avant de lire les données.
+Un système DEVRAIT lire la version courante du schéma pour trouver le libellé d’un nouveau code.
+La plupart des listes s’allongent, et seule une liste fermée, comme oui, non et inconnu, peut promettre le contraire.
+
+== Références
+
+=== Références normatives
+
+* link:https://semver.org/lang/fr/spec/v2.0.0.html[Gestion sémantique de version 2.0.0], semver.org, 2.0.0, 2013-06-18. link:https://web.archive.org/web/20261006181837/https://semver.org/lang/fr/spec/v2.0.0.html[Copie archivée]
+
+=== Références informatives
+
+* link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies, Authority tables], Office des publications de l’Union européenne, version 20260923-0, 2026-09-23. link:https://web.archive.org/web/20261015110940/https://op.europa.eu/en/web/eu-vocabularies/authority-tables[Copie archivée]
+
+== Historique du document
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-05 |Première version.
+|===

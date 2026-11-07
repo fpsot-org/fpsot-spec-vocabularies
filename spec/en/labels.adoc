@@ -1,0 +1,78 @@
+= Labels and definitions
+include::_fpsot-terms.adoc[]
+
+People choose a concept by its label and learn its meaning from its definition.
+These rules make both exist in English and French, and keep them clear.
+
+== Labels
+
+[[VOC-010]]
+*VOC-010.* Each scheme, concept and collection MUST have exactly one `skos:prefLabel` with the tag `en`.
+It MUST also have exactly one with the tag `fr`.
+The link:https://www.w3.org/TR/skos-reference/[SKOS Reference] allows at most one preferred label per language tag.
+This specification also requires both languages, as NAM-061 and DAT-005 do for code values.
+A reader in either language then sees a real label, never a code.
+
+[[VOC-011]]
+*VOC-011.* Each label, definition and note MUST carry a language tag that follows LOC-001 and LOC-002.
+Each preferred label, definition and note MUST exist with the tag `en` and with the tag `fr`.
+A scheme MAY add labels in other languages, and labels with a regional tag such as `fr-CA`.
+A regional label exists only when the wording of that region differs.
+A program looks up a label through the fallback chain of LOC-006.
+The base tags then serve every regional reader, and data uses the same keys as DAT-004.
+
+Alternative and hidden labels MAY exist in one language only, since they are often synonyms or misspellings.
+
+[[VOC-012]]
+*VOC-012.* Two concepts of one scheme that are not deprecated MUST NOT have the same preferred label in one language.
+A deprecated concept that keeps such a label SHOULD qualify it under VOC-016, as in `Building permit (before 2027)`.
+An alternative label SHOULD NOT match the preferred label of another concept in that scheme.
+The {abbr-skos-first} model does not forbid such clashes, but a person picking from a list cannot tell the two apart.
+
+[[VOC-013]]
+*VOC-013.* An alternative label, `skos:altLabel`, MAY hold a synonym, an abbreviation or a former label.
+A hidden label, `skos:hiddenLabel`, MAY hold a common misspelling, which search uses and screens never show.
+A text MUST NOT appear in two of these three label kinds for one concept and one language.
+Search then finds a concept by the words that people type.
+The rule against overlap is one of the integrity conditions of {abbr-skos}.
+
+[[VOC-014]]
+*VOC-014.* A label SHOULD be a noun or a noun phrase in the words of the reader, as WRT-041 asks.
+It SHOULD start with a capital letter, with the rest in lower case except for proper nouns.
+It MUST NOT end with a period.
+A label that the writing term base defines SHOULD use the term of that entry, as NAM-002 does for names.
+French labels follow the usage of the {abbr-oqlf-first}, under WRT-031.
+Labels then read the same way on every screen and match the terms in the specifications.
+
+== Definitions
+
+[[VOC-015]]
+*VOC-015.* Each concept MUST have a `skos:definition` in English and in French, in plain language.
+The definition SHOULD say what the concept covers and, where readers could hesitate, what it does not.
+A scope note, `skos:scopeNote`, MAY add advice on use.
+A label alone often leaves two readers with two meanings.
+Two systems that use one code must also mean the same thing by it.
+
+== Changes to text
+
+[[VOC-016]]
+*VOC-016.* A label, a definition or a note MAY improve in any release, if the meaning stays the same.
+A former preferred label SHOULD become an alternative label, so that search still finds it.
+A person MUST review each new or changed text in both languages before a release.
+Rules WRT-033 and LOC-031 set the same review for machine drafts.
+The code and the {abbr-uri-first} stay the same, so stored data needs no change.
+A change of meaning follows VOC-032 instead.
+
+== References
+
+=== Normative
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, Recommendation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===

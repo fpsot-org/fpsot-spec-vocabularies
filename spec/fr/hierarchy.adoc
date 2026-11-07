@@ -1,0 +1,67 @@
+= Hiérarchie et collections
+include::_fpsot-terms.adoc[]
+
+Un schéma peut ranger ses concepts dans un arbre, du plus large au plus étroit.
+Il peut aussi grouper des concepts pour un écran ou un rapport sans changer l’arbre.
+
+== Hiérarchie
+
+[[VOC-020]]
+*VOC-020.* Chaque concept sans concept générique DOIT être un concept de premier niveau de son schéma.
+Le fichier DOIT indiquer à la fois `skos:topConceptOf` sur le concept et `skos:hasTopConcept` sur le schéma.
+Un outil trouve alors les points d’entrée de l’arbre sans parcourir tous les concepts.
+
+[[VOC-021]]
+*VOC-021.* Une hiérarchie DOIT employer `skos:broader` et `skos:narrower`, et les fichiers publiés DOIVENT indiquer les deux sens.
+Ces liens DOIVENT rester dans un même schéma.
+Un lien vers un concept d’un autre schéma est une correspondance, selon VOC-041.
+La link:https://www.w3.org/TR/skos-reference/[SKOS Reference] définit chaque propriété comme l’inverse de l’autre.
+Un outil sans moteur d’inférence voit quand même les deux sens si le fichier les indique.
+
+[[VOC-022]]
+*VOC-022.* Une chaîne de liens génériques NE DOIT PAS revenir au concept d’où elle part.
+Un concept DEVRAIT avoir au plus un concept générique.
+Un concept PEUT en avoir deux ou plus quand il relève vraiment de chacun.
+Le modèle {abbr-skos-first} permet les cycles.
+Pourtant, les listes de codes qui guident les formulaires et les rapports ont besoin d’un arbre.
+Un thésaurus selon la norme link:https://www.iso.org/standard/53657.html[ISO 25964-1] peut avoir plusieurs termes génériques, et certains vocabulaires aussi.
+
+[[VOC-023]]
+*VOC-023.* Dans un lien générique, le concept spécifique DOIT être une sorte, une partie ou une instance du concept générique.
+Tout autre lien entre deux concepts d’un même schéma DOIT employer `skos:related`.
+Un lien associatif NE DOIT PAS joindre deux concepts d’une même chaîne de liens génériques.
+Le lectorat et les outils s’attendent à ce que tout ce qui est sous un concept partage son sens.
+La dernière condition est une des conditions d’intégrité de {abbr-skos}.
+
+== Collections
+
+[[VOC-024]]
+*VOC-024.* Un groupe de concepts qui n’est pas lui-même un concept DOIT être une `skos:Collection`, avec des libellés selon VOC-010.
+Un groupe dont l’ordre compte DOIT être une `skos:OrderedCollection`.
+Les données NE DOIVENT PAS conserver une collection comme un code.
+Par exemple : le groupe des documents qu’une entreprise peut demander.
+Une collection change ce qu’un écran montre, mais elle ne change ni la hiérarchie ni le sens d’un code.
+
+[[VOC-025]]
+*VOC-025.* L’ordre dans lequel une liste montre les concepts DOIT venir d’une collection ordonnée ou des libellés.
+Les libellés se trient selon les règles de la langue du lectorat, selon LOC-015.
+L’ordre NE DOIT PAS venir des codes.
+Les codes sont en anglais, donc leur ordre n’a pas de sens pour une personne qui lit en français.
+
+== Références
+
+=== Références normatives
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, recommandation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Copie archivée]
+
+=== Références informatives
+
+* link:https://www.iso.org/standard/53657.html[ISO 25964-1, Thesauri and interoperability with other vocabularies, Part 1: Thesauri for information retrieval], ISO, ISO 25964-1:2011, 2011-08. link:https://web.archive.org/web/20261020215308/https://www.iso.org/standard/53657.html[Copie archivée]
+
+== Historique du document
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-05 |Première version.
+|===

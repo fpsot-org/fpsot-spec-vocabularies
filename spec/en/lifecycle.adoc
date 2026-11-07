@@ -1,0 +1,85 @@
+= Lifecycle and versions
+include::_fpsot-terms.adoc[]
+
+Records keep their codes for decades, while a vocabulary keeps changing.
+These rules let a scheme change without breaking any record that uses it.
+
+== Concepts
+
+[[VOC-030]]
+*VOC-030.* A publisher MUST NOT delete a published concept.
+Every later release of the scheme MUST still hold it, with its {abbr-uri-first}, code, labels and definition.
+A record from any year can then still show the label of its code.
+A deleted concept leaves old records with a code that no one can read.
+
+[[VOC-031]]
+*VOC-031.* To retire a concept, a release MUST mark it with `owl:deprecated true`, and keep its other links.
+It MUST also add a change note under VOC-034 that gives the reason.
+When another concept takes its place, the release MUST link the two with `dct:isReplacedBy` and `dct:replaces`.
+A concept split in two gets two replacements, and each concept merged into one points to the same replacement.
+The Publications Office of the European Union marks retired concepts the same way in the link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies authority tables].
+Programs can then move old data to the new code without guessing.
+
+[[VOC-032]]
+*VOC-032.* The meaning of a concept MUST NOT change.
+When the meaning must change, a release MUST add a new concept and deprecate the old one, under VOC-031.
+A fix that keeps the meaning, such as a clearer definition, follows VOC-016.
+Old records used the old meaning.
+A new meaning under the old code would change what they say.
+
+[[VOC-033]]
+*VOC-033.* A system MUST accept a deprecated code in stored data, and MUST show its label.
+It MUST NOT offer a deprecated concept as a choice for new data.
+It SHOULD offer the replacement instead, when one exists.
+Old records stay valid and readable, while new records use current codes.
+
+== Change notes
+
+[[VOC-034]]
+*VOC-034.* A change to the labels, definition, hierarchy, mappings or status of a concept MUST add a change note.
+The note is a `skos:changeNote` in English and in French.
+The note MUST start with the date and the version of the release, such as `2026-11-05, 1.1.0:`.
+The release MUST also set `dct:modified` on the concept to that date.
+Readers can then see why a concept changed, without a search through the history of the files.
+
+== Scheme versions
+
+[[VOC-035]]
+*VOC-035.* Each release of a scheme MUST have a version number under link:https://semver.org/spec/v2.0.0.html[Semantic Versioning 2.0.0].
+The number goes in `owl:versionInfo`, and the date of the release in `dct:modified`.
+A patch release only fixes text and keeps every meaning.
+A minor release can add concepts and mappings, deprecate concepts or change the hierarchy.
+A scheme SHOULD never need a major release, since no rule here lets a release remove anything.
+A major release still MUST NOT break VOC-004, VOC-007 or VOC-030.
+
+[[VOC-036]]
+*VOC-036.* The files of each release MUST stay available at the scheme {abbr-uri}, then `/versions/`, then the version number.
+The scheme {abbr-uri} itself MUST serve the latest release.
+A versioned address names files, not concepts, so each concept keeps its single {abbr-uri}.
+A system can then check its data against the exact release it used.
+
+[[VOC-037]]
+*VOC-037.* The description of a scheme MUST say whether a minor release can add concepts, under NAM-081.
+A check against an enumeration applies when a system writes new data.
+A system MUST accept and keep data read from other systems, even with codes that its enumeration does not know.
+The other choice is to generate the enumeration again from the current release, before reading the data.
+A system SHOULD read the current release of the scheme to find the label of a new code.
+Most lists grow, and only a closed list, such as yes, no and unknown, can promise otherwise.
+
+== References
+
+=== Normative
+
+* link:https://semver.org/spec/v2.0.0.html[Semantic Versioning 2.0.0], semver.org, 2.0.0, 2013-06-18. link:https://web.archive.org/web/20261026045444/https://semver.org/spec/v2.0.0.html[Archived copy]
+
+=== Informative
+
+* link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies, Authority tables], Publications Office of the European Union, release 20260923-0, 2026-09-23. link:https://web.archive.org/web/20261015110940/https://op.europa.eu/en/web/eu-vocabularies/authority-tables[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===

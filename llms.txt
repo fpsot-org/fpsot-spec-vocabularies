@@ -1,0 +1,26 @@
+# FPSOT vocabularies specification
+
+> How FPSOT projects publish controlled vocabularies as W3C SKOS concept schemes: stable URIs and codes, English and French labels, hierarchy, deprecation and versions, mappings, Turtle, JSON-LD and CSV files, and LinkML bindings.
+
+## Specification
+
+- [Overview](spec/en/index.adoc): scope, parts, conformance and references.
+- [Schemes, concepts and codes](spec/en/identity.adoc): VOC-001 to VOC-008.
+- [Labels and definitions](spec/en/labels.adoc): VOC-010 to VOC-016.
+- [Hierarchy and collections](spec/en/hierarchy.adoc): VOC-020 to VOC-025.
+- [Lifecycle and versions](spec/en/lifecycle.adoc): VOC-030 to VOC-037.
+- [Mappings](spec/en/mappings.adoc): VOC-040 to VOC-044.
+- [Publishing](spec/en/publishing.adoc): VOC-050 to VOC-055.
+- [Binding in data models](spec/en/binding.adoc): VOC-060 to VOC-065.
+
+## Guide and model
+
+- [Publish a vocabulary of document types](docs/modules/en/pages/index.adoc)
+- [Example scheme in Turtle](model/document-types.ttl)
+- [Example LinkML binding](model/document-types.yaml)
+
+## Optional
+
+- [Agent skill](skill/SKILL.md)
+- [Comparison data](jurisdictions/baseline.yaml)
+- [Français](spec/fr/index.adoc)

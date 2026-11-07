@@ -1,16 +1,196 @@
-= Guide
-:translation-status: pending
-:page-type: explanation
+= Publier un vocabulaire de types de documents
+:page-type: how-to
 include::_fpsot-terms.adoc[]
 
-Cette page explique la spécification aux personnes qui l’adoptent.
-Chaque page de guide a un seul type.
-C’est un tutoriel, un guide pratique, une référence ou une explication.
+Ce guide construit un petit vocabulaire de types de documents, en anglais et en français.
+Il écrit le schéma en Turtle, le lie à un modèle LinkML et vérifie les deux.
+Les fichiers complets sont dans le dossier `model/` de ce dépôt.
+
+== Chercher un schéma existant
+
+Cherchez d’abord dans les schémas des autorités, comme le demande l’exigence VOC-040.
+Les link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies] ont une table des types de ressources, mais elle couvre les actes juridiques de l’Union européenne.
+Un organisme qui délivre des permis aux personnes a besoin de son propre schéma.
+Il le relie à cette table là où les sens sont proches.
+
+== Choisir les adresses et les codes
+
+Choisissez un domaine que votre organisme gardera, et nommez le schéma avec un nom anglais au pluriel.
+Ici, l’{abbr-uri-first} du schéma est `https://data.example.org/vocabularies/document-types`.
+Donnez à chaque concept un code anglais en kebab-case, comme `building-permit`.
+L’{abbr-uri} du concept est l’{abbr-uri} du schéma, suivie de `/concepts/`, puis du code, comme le fixe VOC-003.
+
+== Écrire le schéma
+
+Écrivez le schéma et ses concepts en Turtle.
+Donnez à chacun un libellé et une définition en anglais et en français.
+Indiquez chaque lien générique et son lien spécifique, et marquez chaque concept sans parent comme concept de premier niveau.
+
+[source,turtle]
+----
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix doctype: <https://data.example.org/vocabularies/document-types/concepts/> .
+
+<https://data.example.org/vocabularies/document-types>
+    a skos:ConceptScheme ;
+    skos:prefLabel "Document types"@en , "Types de documents"@fr ;
+    skos:definition "Kinds of documents that a public body issues to a person or a business."@en ,
+        "Genres de documents qu’un organisme public délivre à une personne ou à une entreprise."@fr ;
+    skos:scopeNote "Open list: a minor release can add concepts."@en ,
+        "Liste ouverte : une version mineure peut ajouter des concepts."@fr ;
+    dct:publisher <https://data.example.org/> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "1.1.0" ;
+    dct:modified "2026-11-05"^^xsd:date ;
+    skos:hasTopConcept doctype:permit , doctype:decision .
+
+doctype:permit
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "permit" ;
+    skos:prefLabel "Permit"@en , "Permis"@fr ;
+    skos:definition "A document that allows a person or a business to do something that the law controls."@en ,
+        "Document qui permet à une personne ou à une entreprise de faire une chose que la loi encadre."@fr ;
+    skos:narrower doctype:building-permit .
+
+doctype:building-permit
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "building-permit" ;
+    skos:prefLabel "Building permit"@en , "Permis de construction"@fr ;
+    skos:altLabel "Construction permit"@en , "Permis de bâtir"@fr ;
+    skos:definition "A permit to build, enlarge or demolish a building."@en ,
+        "Permis qui permet de construire, d’agrandir ou de démolir un bâtiment."@fr ;
+    skos:broader doctype:permit .
+
+doctype:decision
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "decision" ;
+    skos:prefLabel "Decision"@en , "Décision"@fr ;
+    skos:definition "A document that gives the answer of a public body to a request, with its reasons."@en ,
+        "Document qui donne la réponse d’un organisme public à une demande, avec ses motifs."@fr .
+----
+
+Le libellé alternatif « Permis de bâtir » permet à la recherche de trouver le concept par une formulation courante au Québec.
+
+== Établir une correspondance avec un schéma externe
+
+Reliez un concept à l’{abbr-uri} publiée d’un concept externe, comme le demande VOC-042.
+Le type de ressource Décision de l’UE couvre les actes juridiques de l’Union, pas les réponses d’un organisme aux personnes.
+Les deux concepts sont reliés sans jamais pouvoir se remplacer, donc employez une correspondance associative.
+Nommez le schéma externe sur votre schéma, et notez la version que vous avez vérifiée, comme le demande VOC-044.
+
+[source,turtle]
+----
+doctype:decision
+    skos:relatedMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> .
+
+<https://data.example.org/vocabularies/document-types>
+    dct:references <http://publications.europa.eu/resource/authority/resource-type> ;
+    skos:changeNote "2026-11-05, 1.1.0: Mappings checked against the EU resource type table, release 20260923-0."@en ,
+        "2026-11-05, 1.1.0 : Correspondances vérifiées avec la table des types de ressources de l’UE, version 20260923-0."@fr .
+----
+
+== Retirer un concept de l’usage
+
+Ne supprimez jamais un concept.
+Dans la version 1.1.0, l’ancien concept `authorization` s’est révélé avoir le même sens que `permit`.
+Marquez-le comme déconseillé et reliez-le à son remplaçant.
+Expliquez le changement dans les deux langues, comme le demandent VOC-031 et VOC-034.
+
+[source,turtle]
+----
+doctype:authorization
+    owl:deprecated true ;
+    dct:isReplacedBy doctype:permit ;
+    dct:modified "2026-11-05"^^xsd:date ;
+    skos:changeNote "2026-11-05, 1.1.0: Deprecated. It had the same meaning as Permit."@en ,
+        "2026-11-05, 1.1.0 : Concept déconseillé. Il avait le même sens que Permis."@fr .
+
+doctype:permit
+    dct:replaces doctype:authorization .
+----
+
+Le code `authorization` et son {abbr-uri} restent dans le schéma pour toujours.
+Les dossiers qui contiennent ce code montrent encore le libellé « Autorisation ».
+
+== Lier le schéma dans un modèle LinkML
+
+Produisez une énumération à partir de la version, comme le demandent VOC-060 à VOC-063.
+Chaque valeur permise a le code comme nom et l’{abbr-uri} du concept comme `meaning`.
+L’`enum_uri` reste dans l’espace de noms du modèle, et `see_also` pointe vers le schéma, comme le demande VOC-061.
+La valeur déconseillée reste, avec sa raison et son remplaçant.
+
+[source,yaml]
+----
+prefixes:
+  doctype: https://data.example.org/vocabularies/document-types/concepts/
+  ex: https://data.example.org/model/document-types/
+enums:
+  DocumentType:
+    description: >-
+      Kinds of documents that a public body issues. Generated from release
+      1.1.0 of the scheme https://data.example.org/vocabularies/document-types.
+    enum_uri: ex:DocumentType
+    see_also:
+      - https://data.example.org/vocabularies/document-types
+    permissible_values:
+      permit:
+        meaning: doctype:permit
+      building-permit:
+        meaning: doctype:building-permit
+      authorization:
+        meaning: doctype:authorization
+        deprecated: Deprecated in release 1.1.0. It had the same meaning as permit.
+        deprecated_element_has_exact_replacement: doctype:permit
+----
+
+Un dossier conserve alors le code, jamais le libellé ni l’{abbr-uri}.
+
+[source,yaml]
+----
+documentType: building-permit
+----
+
+== Publier et vérifier
+
+Produisez le fichier {abbr-json-ld-first} et le fichier {abbr-csv-first} à partir du fichier Turtle, comme le demandent VOC-050 à VOC-052.
+Lancez les vérifications de ce dépôt avant chaque version, comme le demande VOC-054.
+
+[source,shell]
+----
+LINKML=linkml-validate PYTHON=python3 bash model/test-model.sh
+----
+
+[source,text]
+----
+PASS
+----
+
+Le fichier {abbr-csv} a une ligne par concept, y compris les concepts déconseillés.
+
+[source,text]
+----
+uri,code,labelEn,labelFr,definitionEn,definitionFr,broader,deprecated,replacedBy
+https://data.example.org/vocabularies/document-types/concepts/building-permit,building-permit,Building permit,Permis de construction,...,https://data.example.org/vocabularies/document-types/concepts/permit,false,
+----
+
+== Références
+
+=== Références informatives
+
+* link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies, Authority tables], Office des publications de l’Union européenne, version 20260923-0, 2026-09-23. link:https://web.archive.org/web/20261015110940/https://op.europa.eu/en/web/eu-vocabularies/authority-tables[Copie archivée]
 
 == Historique du document
 
 [cols="1,1,4",options="header"]
 |===
 |Version |Date |Changement
-|0.1.0 |2026-11-03 |Première version.
+|0.1.0 |2026-11-05 |Première version.
 |===

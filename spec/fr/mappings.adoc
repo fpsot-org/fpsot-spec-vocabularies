@@ -1,0 +1,65 @@
+= Correspondances
+include::_fpsot-terms.adoc[]
+
+Une correspondance relie un concept à un concept d’un autre schéma, comme une table d’un organisme international.
+Les données peuvent alors passer d’un système à l’autre, même s’ils emploient des vocabulaires différents.
+
+== Réutiliser d’abord
+
+[[VOC-040]]
+*VOC-040.* Avant de créer un schéma, un projet DEVRAIT chercher un schéma qu’une autorité publie déjà, et l’employer.
+Un exemple est la norme de données de référence d’un gouvernement.
+Un autre est une table des link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies], de l’Office des publications de l’Union européenne.
+Un projet qui a quand même besoin de son propre schéma DEVRAIT le relier au schéma de l’autorité.
+Chaque nouveau schéma est une liste de plus que les autres systèmes doivent traduire.
+
+== Propriétés de correspondance
+
+[[VOC-041]]
+*VOC-041.* Une correspondance DOIT employer la propriété qui exprime à quel point les deux concepts sont proches.
+`skos:exactMatch` signifie que les deux concepts peuvent se remplacer dans tout emploi.
+`skos:closeMatch` signifie qu’ils peuvent se remplacer dans certains emplois seulement.
+`skos:broadMatch` et `skos:narrowMatch` désignent un concept plus large ou plus étroit, et `skos:relatedMatch` couvre tout autre lien.
+Selon la link:https://www.w3.org/TR/skos-reference/[SKOS Reference], les correspondances exactes passent d’un schéma à l’autre.
+Les correspondances proches ne le font pas, donc une paire douteuse est une correspondance proche.
+
+[[VOC-042]]
+*VOC-042.* Une correspondance DOIT pointer vers l’{abbr-uri-first} du concept que l’autorité externe publie.
+Un projet NE DOIT PAS inventer une {abbr-uri} dans le domaine d’un autre organisme.
+Certaines listes de codes ne publient pas d’{abbr-uri}, comme l’link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166].
+Pour elles, un projet DEVRAIT viser un schéma public qui porte ces codes comme notations.
+Par exemple, la table des pays des link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies] porte les codes ISO 3166-1 de chaque pays.
+Une adresse inventée ne mènerait à rien, ou plus tard à autre chose.
+
+[[VOC-043]]
+*VOC-043.* Un schéma NE DOIT PAS relier des concepts par `owl:sameAs`.
+Pour une paire, il NE DOIT PAS joindre une correspondance exacte à une correspondance plus large, plus étroite ou associative.
+Les propriétés de correspondance NE DOIVENT PAS joindre deux concepts d’un même schéma.
+Ces concepts emploient plutôt les liens de VOC-021 et de VOC-023.
+`owl:sameAs` fait des deux concepts une seule ressource, donc chacun prendrait les libellés et les liens de l’autre.
+La deuxième condition est une des conditions d’intégrité du modèle {abbr-skos-first}.
+
+[[VOC-044]]
+*VOC-044.* Un schéma DOIT nommer par `dct:references` chaque schéma externe vers lequel il établit des correspondances.
+Une note de modification sur le schéma DOIT donner la version ou la date de chaque schéma externe vérifié.
+La version qui suit une nouvelle version externe DEVRAIT vérifier les correspondances de nouveau.
+Les schémas externes déconseillent et divisent aussi des concepts, et une correspondance peut se périmer sans aucun signe.
+
+== Références
+
+=== Références normatives
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, recommandation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Copie archivée]
+
+=== Références informatives
+
+* link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies, Authority tables], Office des publications de l’Union européenne, version 20260923-0, 2026-09-23. link:https://web.archive.org/web/20261015110940/https://op.europa.eu/en/web/eu-vocabularies/authority-tables[Copie archivée]
+* link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166 Country Codes], ISO. link:https://web.archive.org/web/20261027022740/https://www.iso.org/iso-3166-country-codes.html[Copie archivée]
+
+== Historique du document
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Changement
+|0.1.0 |2026-11-05 |Première version.
+|===

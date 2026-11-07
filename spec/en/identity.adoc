@@ -1,0 +1,92 @@
+= Schemes, concepts and codes
+include::_fpsot-terms.adoc[]
+
+These rules give each vocabulary and each of its values one identity that never changes.
+The model is the link:https://www.w3.org/TR/skos-reference/[SKOS Reference], which the {abbr-w3c-first} approved in 2009.
+In {abbr-skos-first} terms, a vocabulary is a concept scheme, and each value is a concept.
+
+== Schemes and concepts
+
+[[VOC-001]]
+*VOC-001.* A publisher MUST publish each controlled vocabulary as one {abbr-skos} concept scheme.
+Each value of the vocabulary MUST be a {abbr-skos} concept, linked to its scheme with `skos:inScheme`.
+One model lets every tool read every vocabulary, from code lists to thesauri.
+The same files then serve programs, data models and people.
+
+== Addresses
+
+[[VOC-002]]
+*VOC-002.* A scheme {abbr-uri-first} MUST use `https`, under a domain that the publisher controls and plans to keep.
+It SHOULD have the form `+https://<host>/vocabularies/<scheme-name>+`.
+The scheme name MUST be an English plural noun in kebab-case, such as `document-types`, under NAM-002, NAM-013 and NAM-030.
+The {abbr-uri} MUST NOT hold a version number, a status, a language or a file name extension, as NAM-032 sets.
+These facts change while the scheme stays the same.
+
+[[VOC-003]]
+*VOC-003.* A concept {abbr-uri} MUST be the scheme {abbr-uri}, then `/concepts/`, then the code of the concept.
+An example is `https://data.example.org/vocabularies/document-types/concepts/building-permit`.
+A collection {abbr-uri} MUST be the scheme {abbr-uri}, then `/collections/`, then its name in kebab-case.
+When the plain code comes from another issuer under VOC-006, it keeps its form in the {abbr-uri}, as NAM-007 allows.
+Any character outside the unreserved set of link:https://www.rfc-editor.org/info/rfc3986[RFC 3986] is percent-encoded.
+Anyone can then build a concept {abbr-uri} from a stored code, and concepts never clash with collections.
+
+[[VOC-004]]
+*VOC-004.* A {abbr-uri} that a scheme has published MUST keep naming the same scheme, concept or collection forever.
+It MUST NOT change, and it MUST NOT ever name anything else, even after a deprecation.
+Stored data, other schemes and laws point to these addresses.
+A reused {abbr-uri} would give old records a new meaning without any sign.
+Rules NAM-082 and NAM-083 set the same intent for names and addresses.
+
+== Codes
+
+[[VOC-005]]
+*VOC-005.* Each concept MUST have exactly one `skos:notation` that is a plain string, with no language tag and no datatype.
+This deliberately departs from the typed literals that {abbr-skos} conventionally uses.
+This notation is the stored code, and two concepts of one scheme MUST NOT share it.
+The {abbr-skos} Reference advises that no two concepts of a scheme share a notation.
+A concept MAY have other notations, each with a datatype that names another code system.
+Systems store and compare codes as plain text, and one code per concept keeps the link exact.
+
+[[VOC-006]]
+*VOC-006.* A code that {abbr-fpsot-first} or the publisher defines MUST follow NAM-060 and DAT-072, such as `building-permit`.
+A code from another issuer, such as the province code `QC`, MUST keep its exact form, under NAM-007 and DAT-066.
+The code then matches the data of every system that follows the naming and data types specifications.
+If that issuer may reuse codes, a scheme that mirrors its list MUST use plain codes that the publisher defines.
+The code of the issuer then becomes a typed notation, as in the tables of the link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies].
+The other choice is to map to the scheme of the issuer under VOC-042, instead of mirroring its list.
+
+[[VOC-007]]
+*VOC-007.* The code of a concept MUST NOT change, and a scheme MUST NOT give it to another concept later.
+To change a code, publish a new concept and deprecate the old one under VOC-031.
+The same holds when another issuer changes one of its codes.
+VOC-006 covers an issuer that reuses a code, as when link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166-1] gave `CS` to two different countries.
+NAM-080 holds within one major version, but this rule holds across all of them.
+The code is part of the concept {abbr-uri}, so a changed code would break VOC-004.
+
+[[VOC-008]]
+*VOC-008.* A code that the publisher defines MUST NOT encode the place of the concept in the hierarchy.
+It MUST NOT encode its order or any other property either.
+Write `building-permit`, not `permit-01-building`.
+A concept that moves to another parent would otherwise need a new code.
+VOC-007 forbids that change.
+A code from another issuer keeps its form, even when it encodes a hierarchy, as some industry codes do.
+
+== References
+
+=== Normative
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, Recommendation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Archived copy]
+* link:https://www.rfc-editor.org/info/rfc3986[RFC 3986, Uniform Resource Identifier (URI): Generic Syntax], IETF, STD 66, 2005-01. link:https://web.archive.org/web/20261104214241/https://www.rfc-editor.org/info/rfc3986/[Archived copy]
+
+=== Informative
+
+* link:https://op.europa.eu/en/web/eu-vocabularies/authority-tables[EU Vocabularies, Authority tables], Publications Office of the European Union, release 20260923-0, 2026-09-23. link:https://web.archive.org/web/20261015110940/https://op.europa.eu/en/web/eu-vocabularies/authority-tables[Archived copy]
+* link:https://www.iso.org/iso-3166-country-codes.html[ISO 3166 Country Codes], ISO. link:https://web.archive.org/web/20261027022740/https://www.iso.org/iso-3166-country-codes.html[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===

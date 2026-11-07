@@ -1,0 +1,66 @@
+= Hierarchy and collections
+include::_fpsot-terms.adoc[]
+
+A scheme can arrange its concepts in a tree, from broad to narrow.
+It can also group concepts for a screen or a report without changing the tree.
+
+== Hierarchy
+
+[[VOC-020]]
+*VOC-020.* Each concept without a broader concept MUST be a top concept of its scheme.
+The file MUST state both `skos:topConceptOf` on the concept and `skos:hasTopConcept` on the scheme.
+A tool then finds the entry points of the tree without a search through every concept.
+
+[[VOC-021]]
+*VOC-021.* A hierarchy MUST use `skos:broader` and `skos:narrower`, and the published files MUST state both directions.
+These links MUST stay within one scheme.
+A link to a concept of another scheme is a mapping, under VOC-041.
+The link:https://www.w3.org/TR/skos-reference/[SKOS Reference] defines each property as the inverse of the other.
+A tool without a reasoner still sees both directions when the file states them.
+
+[[VOC-022]]
+*VOC-022.* A chain of broader links MUST NOT return to the concept where it started.
+A concept SHOULD have at most one broader concept.
+A concept MAY have two or more when it truly belongs under each of them.
+The {abbr-skos-first} model allows cycles, but code lists that drive forms and reports need a tree.
+A thesaurus under link:https://www.iso.org/standard/53657.html[ISO 25964-1] may have several broader terms, and some vocabularies need that too.
+
+[[VOC-023]]
+*VOC-023.* In a broader link, the narrower concept MUST be a kind, part or instance of the broader one.
+Any other link between two concepts of one scheme MUST use `skos:related`.
+A related link MUST NOT join two concepts on the same chain of broader links.
+Readers and tools expect everything under a concept to share its meaning.
+The last condition is one of the integrity conditions of {abbr-skos}.
+
+== Collections
+
+[[VOC-024]]
+*VOC-024.* A group of concepts that is not itself a concept MUST be a `skos:Collection`, with labels under VOC-010.
+A group whose order matters MUST be a `skos:OrderedCollection`.
+Data MUST NOT store a collection as a code.
+An example is the group of documents that a business can request.
+A collection changes what a screen shows, but it does not change the hierarchy or the meaning of a code.
+
+[[VOC-025]]
+*VOC-025.* The order in which a list shows concepts MUST come from an ordered collection or from the labels.
+Labels sort with the rules of the language of the reader, under LOC-015.
+The order MUST NOT come from the codes.
+Codes are in English, so their order makes no sense to a French reader.
+
+== References
+
+=== Normative
+
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, Recommendation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Archived copy]
+
+=== Informative
+
+* link:https://www.iso.org/standard/53657.html[ISO 25964-1, Thesauri and interoperability with other vocabularies, Part 1: Thesauri for information retrieval], ISO, ISO 25964-1:2011, 2011-08. link:https://web.archive.org/web/20261020215308/https://www.iso.org/standard/53657.html[Archived copy]
+
+== Document history
+
+[cols="1,1,4",options="header"]
+|===
+|Version |Date |Change
+|0.1.0 |2026-11-05 |First version.
+|===

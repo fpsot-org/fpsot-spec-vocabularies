@@ -1,0 +1,99 @@
+# SPDX-License-Identifier: Community-Spec-1.0
+# Invalid example of the FPSOT vocabularies specification.
+# VOC-005: a concept has two plain notations.
+# The host data.example.org stands for the domain of a publishing body.
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix doctype: <https://data.example.org/vocabularies/document-types/concepts/> .
+
+<https://data.example.org/vocabularies/document-types>
+    a skos:ConceptScheme ;
+    skos:prefLabel "Document types"@en , "Types de documents"@fr ;
+    skos:definition "Kinds of documents that a public body issues to a person or a business."@en ,
+        "Genres de documents qu’un organisme public délivre à une personne ou à une entreprise."@fr ;
+    skos:scopeNote "Open list: a minor release can add concepts."@en ,
+        "Liste ouverte : une version mineure peut ajouter des concepts."@fr ;
+    dct:publisher <https://data.example.org/> ;
+    dct:license <https://creativecommons.org/licenses/by/4.0/> ;
+    owl:versionInfo "1.1.0" ;
+    dct:modified "2026-11-05"^^xsd:date ;
+    dct:references <http://publications.europa.eu/resource/authority/resource-type> ;
+    skos:changeNote "2026-11-05, 1.1.0: Mappings checked against the EU resource type table, release 20260923-0."@en ,
+        "2026-11-05, 1.1.0 : Correspondances vérifiées avec la table des types de ressources de l’UE, version 20260923-0."@fr ;
+    skos:hasTopConcept doctype:permit , doctype:certificate , doctype:decision , doctype:notice , doctype:authorization .
+
+doctype:permit
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "permit" ;
+    skos:prefLabel "Permit"@en , "Permis"@fr ;
+    skos:definition "A document that allows a person or a business to do something that the law controls."@en ,
+        "Document qui permet à une personne ou à une entreprise de faire une chose que la loi encadre."@fr ;
+    skos:narrower doctype:building-permit ;
+    dct:replaces doctype:authorization ;
+    dct:modified "2026-11-05"^^xsd:date ;
+    skos:changeNote "2026-11-05, 1.1.0: Replaces Authorization."@en ,
+        "2026-11-05, 1.1.0 : Remplace Autorisation."@fr .
+
+doctype:building-permit
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "building-permit" ;
+    skos:prefLabel "Building permit"@en , "Permis de construction"@fr ;
+    skos:altLabel "Construction permit"@en , "Permis de bâtir"@fr ;
+    skos:definition "A permit to build, enlarge or demolish a building."@en ,
+        "Permis qui permet de construire, d’agrandir ou de démolir un bâtiment."@fr ;
+    skos:broader doctype:permit .
+
+doctype:certificate
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "certificate" ;
+    skos:prefLabel "Certificate"@en , "Certificat"@fr ;
+    skos:definition "A document that confirms a fact, such as a birth or a qualification. It allows nothing by itself."@en ,
+        "Document qui atteste un fait, comme une naissance ou une qualification. Il ne permet rien par lui-même."@fr .
+
+doctype:decision
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "decision" ;
+    skos:prefLabel "Decision"@en , "Décision"@fr ;
+    skos:definition "A document that gives the answer of a public body to a request, with its reasons."@en ,
+        "Document qui donne la réponse d’un organisme public à une demande, avec ses motifs."@fr ;
+    skos:relatedMatch <http://publications.europa.eu/resource/authority/resource-type/DEC> ;
+    dct:modified "2026-11-05"^^xsd:date ;
+    skos:changeNote "2026-11-05, 1.1.0: Related match to the EU resource type Decision added."@en ,
+        "2026-11-05, 1.1.0 : Correspondance associative avec le type de ressource Décision de l’UE ajoutée."@fr .
+
+doctype:notice
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "notice" , "notification" ;
+    skos:prefLabel "Notice"@en , "Avis"@fr ;
+    skos:definition "A document that informs a person of a fact or of a coming action. It decides nothing."@en ,
+        "Document qui informe une personne d’un fait ou d’une action à venir. Il ne décide rien."@fr .
+
+doctype:authorization
+    a skos:Concept ;
+    skos:inScheme <https://data.example.org/vocabularies/document-types> ;
+    skos:topConceptOf <https://data.example.org/vocabularies/document-types> ;
+    skos:notation "authorization" ;
+    skos:prefLabel "Authorization"@en , "Autorisation"@fr ;
+    skos:definition "A document that allows an action. Replaced by Permit."@en ,
+        "Document qui permet une action. Remplacé par Permis."@fr ;
+    owl:deprecated true ;
+    dct:isReplacedBy doctype:permit ;
+    dct:modified "2026-11-05"^^xsd:date ;
+    skos:changeNote "2026-11-05, 1.1.0: Deprecated. It had the same meaning as Permit."@en ,
+        "2026-11-05, 1.1.0 : Concept déconseillé. Il avait le même sens que Permis."@fr .
+
+<https://data.example.org/vocabularies/document-types/collections/business-documents>
+    a skos:Collection ;
+    skos:prefLabel "Documents for businesses"@en , "Documents pour les entreprises"@fr ;
+    skos:member doctype:permit , doctype:building-permit , doctype:certificate .

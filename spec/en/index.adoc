@@ -1,34 +1,57 @@
 = FPSOT vocabularies specification
 include::_fpsot-terms.adoc[]
 
-Replace this page with the normative text of the specification.
-Start with the scope, then the conformance classes, then the requirements.
+This specification sets how {abbr-fpsot-first} projects publish controlled vocabularies.
+A controlled vocabulary is a fixed set of values with agreed meanings, such as types of documents.
+Code lists, classifications and thesauri are all controlled vocabularies.
+Each one is a concept scheme of the link:https://www.w3.org/TR/skos-reference/[SKOS] model of the {abbr-w3c-first}.
+Two systems that use the same scheme then agree on each code, its labels and its meaning.
+
+The rules come in seven parts.
+
+* xref:identity.adoc[Schemes, concepts and codes] sets the address and the code of each value.
+* xref:labels.adoc[Labels and definitions] sets the text that people read, in English and French.
+* xref:hierarchy.adoc[Hierarchy and collections] sets how to arrange and group concepts.
+* xref:lifecycle.adoc[Lifecycle and versions] sets how a scheme changes without breaking old data.
+* xref:mappings.adoc[Mappings] links concepts to the schemes of other bodies.
+* xref:publishing.adoc[Publishing] sets the files of each release and how to check them.
+* xref:binding.adoc[Binding in data models] ties a field of a LinkML model to a scheme.
+
+== Related specifications
+
+This specification builds on other {abbr-fpsot} specifications.
+The naming specification sets the form of addresses and codes.
+The internationalization specification sets the language tags and the fallback between languages.
+The writing specification sets how to write labels and definitions.
+The data types specification sets how data stores a code value and an identifier.
+How an {abbr-api-first} serves a vocabulary belongs to the {abbr-fpsot} specifications on {abbr-api} design.
 
 == Conformance
 
-[quote, RFC 8174]
+[quote, 'link:https://www.rfc-editor.org/info/rfc8174[RFC 8174]']
 ____
-The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 (RFC 2119, RFC 8174) when, and only when, they appear in all capitals, as shown here.
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "NOT RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in BCP 14 (link:https://www.rfc-editor.org/info/rfc2119[RFC 2119], link:https://www.rfc-editor.org/info/rfc8174[RFC 8174]) when, and only when, they appear in all capitals, as shown here.
 ____
 
-The French version uses the keywords of requirement WRT-011 of the {abbr-fpsot-first} writing specification.
+The keywords follow requirement WRT-010 of the {abbr-fpsot} writing specification.
+The French version uses the French keywords of WRT-011.
 
-== Requirements
+A scheme conforms to this specification when each of its releases meets every MUST rule that applies to a scheme.
+A system conforms when it reads and stores codes as VOC-033, VOC-037 and VOC-064 require.
+A data model conforms when its bindings meet the rules of the binding part.
 
-Give each requirement an anchor line with its ID, directly above its paragraph.
-The anchor looks like `+[[XYZ-001]]+`.
-The example below shows the form. Replace it with the first requirement.
+== References
 
-[[TPL-001]]
-*TPL-001.* A normative statement MUST use one of the {abbr-bcp-first} 14 keywords in capitals.
-The keyword gives the rule its strength.
+=== Normative
+
+* link:https://www.rfc-editor.org/info/rfc2119[RFC 2119, Key words for use in RFCs to Indicate Requirement Levels], IETF, BCP 14, 1997-03. link:https://web.archive.org/web/20261103005705/https://www.rfc-editor.org/info/rfc2119/[Archived copy]
+* link:https://www.rfc-editor.org/info/rfc8174[RFC 8174, Ambiguity of Uppercase vs Lowercase in RFC 2119 Key Words], IETF, BCP 14, 2017-05. link:https://web.archive.org/web/20261103005743/https://www.rfc-editor.org/info/rfc8174/[Archived copy]
+* link:https://www.w3.org/TR/skos-reference/[SKOS Simple Knowledge Organization System Reference], W3C, Recommendation, 2009-08-18. link:https://web.archive.org/web/20261020031508/https://www.w3.org/TR/skos-reference/[Archived copy]
 
 == Document history
-
-Add one row for each version that changes this page.
 
 [cols="1,1,4",options="header"]
 |===
 |Version |Date |Change
-|0.1.0 |2026-11-03 |First version.
+|0.1.0 |2026-11-05 |First version.
 |===

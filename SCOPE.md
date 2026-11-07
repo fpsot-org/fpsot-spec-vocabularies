@@ -1,5 +1,9 @@
 # Scope
 
-[Include a detailed description of this Working Group’s Scope.  This Scope is important is it establishes the bounds of each contributor's and licensee's patent commitment. For guidance on drafting an appropriate Scope, you may find [ISO's guidance (see page 5)](https://www.iso.org/files/live/sites/isoorg/files/developing_standards/docs/en/how-to-write-standards.pdf "ISO How To Write Standards Guide") helpful.]
+This Working Group develops the FPSOT vocabularies specification.
+
+The specification covers how FPSOT projects publish and maintain controlled vocabularies, such as code lists, classifications and thesauri, as W3C SKOS concept schemes: the URIs and codes of schemes, concepts and collections, labels and definitions in English and French, hierarchy and grouping, deprecation, change notes and versions, mappings to the schemes of other bodies, the published files and their checks, and the binding of vocabularies in LinkML data models. It includes an example scheme, its LinkML binding and a checking script.
+
+It does not cover the content of any particular vocabulary, how an application programming interface serves vocabularies, or how values are displayed to people.
 
 Any changes of Scope are not retroactive.

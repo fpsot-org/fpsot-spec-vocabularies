@@ -9,22 +9,32 @@ developmentStatus: concept
 softwareType: "standalone/other"
 description:
   en:
-    shortDescription: Template for FPSOT specification repositories.
+    shortDescription: Controlled vocabulary rules for FPSOT projects.
     longDescription: >
-      Starting point for an FPSOT specification repository. It holds the
-      layout, the Community Specification License files, and the CI that
-      checks requirement IDs, links, languages and prose.
+      Rules for publishing code lists, classifications and thesauri as W3C
+      SKOS concept schemes: stable URIs and codes, labels and definitions in
+      English and French, hierarchy and collections, deprecation and
+      versions, mappings to the schemes of other bodies, Turtle, JSON-LD and
+      CSV files, and binding in LinkML models.
     features:
-      - Specification repository layout
+      - SKOS concept schemes with stable URIs and codes
+      - English and French labels and definitions
+      - Deprecation without deletion
+      - LinkML enums bound to concept URIs
   fr:
-    shortDescription: Gabarit des dépôts de spécification de FPSOT.
+    shortDescription: Règles sur les vocabulaires contrôlés des projets FPSOT.
     longDescription: >
-      Point de départ d'un dépôt de spécification de FPSOT. Il contient la
-      structure, les fichiers de la Community Specification License, et
-      l'intégration continue qui vérifie les identifiants, les liens, les
-      langues et la rédaction.
+      Règles pour publier des listes de codes, des classifications et des
+      thésaurus comme schémas de concepts SKOS du W3C : URI et codes stables,
+      libellés et définitions en anglais et en français, hiérarchie et
+      collections, concepts déconseillés et versions, correspondances avec
+      les schémas d'autres organismes, fichiers Turtle, JSON-LD et CSV, et
+      liaison dans les modèles LinkML.
     features:
-      - Structure d'un dépôt de spécification
+      - Schémas de concepts SKOS avec URI et codes stables
+      - Libellés et définitions en anglais et en français
+      - Concepts déconseillés sans suppression
+      - Énumérations LinkML liées aux URI des concepts
 legal:
   license: Community-Spec-1.0
 maintenance:
