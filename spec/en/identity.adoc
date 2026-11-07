@@ -17,7 +17,7 @@ The same files then serve programs, data models and people.
 
 [[VOC-002]]
 *VOC-002.* A scheme {abbr-uri-first} MUST use `https`, under a domain that the publisher controls and plans to keep.
-It SHOULD have the form `https://<host>/vocabularies/<scheme-name>`.
+It SHOULD have the form `+https://<host>/vocabularies/<scheme-name>+`.
 The scheme name MUST be an English plural noun in kebab-case, such as `document-types`, under NAM-002, NAM-013 and NAM-030.
 The {abbr-uri} MUST NOT hold a version number, a status, a language or a file name extension, as NAM-032 sets.
 These facts change while the scheme stays the same.

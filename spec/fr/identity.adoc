@@ -17,7 +17,7 @@ Les mêmes fichiers servent alors aux programmes, aux modèles de données et au
 
 [[VOC-002]]
 *VOC-002.* L’{abbr-uri-first} d’un schéma DOIT employer `https`, sous un domaine que l’éditeur contrôle et compte garder.
-Elle DEVRAIT avoir la forme `https://<hôte>/vocabularies/<nom-du-schéma>`.
+Elle DEVRAIT avoir la forme `+https://<hôte>/vocabularies/<nom-du-schéma>+`.
 Le nom du schéma DOIT être un nom anglais au pluriel en kebab-case, comme `document-types`, selon NAM-002, NAM-013 et NAM-030.
 L’{abbr-uri} NE DOIT PAS contenir de numéro de version, d’état, de langue ni d’extension de fichier.
 L’exigence NAM-032 fixe la même règle.
